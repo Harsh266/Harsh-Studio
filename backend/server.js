@@ -11,7 +11,7 @@ app.use(cookieParser());
 
 // ✅ Allow frontend to access backend
 app.use(cors({
-  origin: ["http://localhost:5173", "https://harsh-studio.onrender.com"],
+  origin: ["http://localhost:5173", "https://harsh-studio-7va1.onrender.com"],
   credentials: true
 }));
 
