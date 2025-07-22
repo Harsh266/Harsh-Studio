@@ -3,7 +3,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000",  // your backend base URL
+  baseURL: "https://harsh-studio.onrender.com",  // your backend base URL
   withCredentials: true,              // ✅ sends cookies for JWT auth
 });
 
