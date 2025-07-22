@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const projectRoutes = require("./routes/project");
+const contactRoutes = require("./routes/contact");
 
 const app = express();
 app.use(cookieParser());
@@ -17,6 +18,8 @@ app.use(cors({
 app.use(express.json());
 
 app.use("/api/projects", projectRoutes);
+
+app.use("/api/contact", contactRoutes);
 
 // Optional: Keep root route for general check
 app.get("/", (req, res) => {
