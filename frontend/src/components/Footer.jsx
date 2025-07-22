@@ -1,5 +1,6 @@
 import { FaInstagram, FaGithub, FaBehance } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -24,17 +25,18 @@ const Footer = () => {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Pagination</h3>
           <ul className="space-y-2 text-gray-600">
-            {["Home", "About me", "Projects", "Contact me"].map((text, i) => (
-              <motion.li
-                key={i}
-                whileHover={{ scale: 1.1, x: 5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <a href={`#${text.toLowerCase().replace(" ", "")}`} className="hover:text-black font-medium">
-                  {text}
-                </a>
-              </motion.li>
-            ))}
+            <motion.li whileHover={{ scale: 1.1, x: 5 }} transition={{ duration: 0.2 }}>
+              <Link to="/" className="hover:text-black font-medium">Home</Link>
+            </motion.li>
+            <motion.li whileHover={{ scale: 1.1, x: 5 }} transition={{ duration: 0.2 }}>
+              <a href="#aboutme" className="hover:text-black font-medium">About me</a>
+            </motion.li>
+            <motion.li whileHover={{ scale: 1.1, x: 5 }} transition={{ duration: 0.2 }}>
+              <Link to="/projects" className="hover:text-black font-medium">Projects</Link>
+            </motion.li>
+            <motion.li whileHover={{ scale: 1.1, x: 5 }} transition={{ duration: 0.2 }}>
+              <Link to="/contact" className="hover:text-black font-medium">Contact me</Link>
+            </motion.li>
           </ul>
         </div>
 
@@ -46,19 +48,40 @@ const Footer = () => {
               whileHover={{ scale: 1.1, x: 5 }}
               className="flex items-center gap-3 cursor-pointer hover:text-pink-600"
             >
-              <FaInstagram size={20} /> Instagram
+              <a
+                href="https://instagram.com/your_username"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3"
+              >
+                <FaInstagram size={20} /> Instagram
+              </a>
             </motion.li>
             <motion.li
               whileHover={{ scale: 1.1, x: 5 }}
               className="flex items-center gap-3 cursor-pointer hover:text-blue-600"
             >
-              <FaBehance size={20} /> Behance
+              <a
+                href="https://www.behance.net/harshvekariya2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3"
+              >
+                <FaBehance size={20} /> Behance
+              </a>
             </motion.li>
             <motion.li
               whileHover={{ scale: 1.1, x: 5 }}
               className="flex items-center gap-3 cursor-pointer hover:text-gray-800"
             >
-              <FaGithub size={20} /> GitHub
+              <a
+                href="https://github.com/Harsh266"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3"
+              >
+                <FaGithub size={20} /> GitHub
+              </a>
             </motion.li>
           </ul>
         </div>

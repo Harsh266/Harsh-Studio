@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const projectRoutes = require("./routes/project");
 
 const app = express();
 app.use(cookieParser());
@@ -15,9 +16,15 @@ app.use(cors({
 
 app.use(express.json());
 
+app.use("/api/projects", projectRoutes);
+
 // Optional: Keep root route for general check
 app.get("/", (req, res) => {
   res.send("Backend is connected and MongoDB is connected!");
+});
+
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "Hello from backend!" });
 });
 
 mongoose.connect(process.env.MONGO_URI, {
