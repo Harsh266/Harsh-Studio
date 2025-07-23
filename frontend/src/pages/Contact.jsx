@@ -1,82 +1,80 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import axios from "axios";
+import CustomCursor from "../components/CustomCursor";
 
-export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post("http://localhost:5000/api/contact", formData);
-      alert("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
-      alert("Failed to send message");
-      console.error(error);
-    }
-  };
+const Contact = () => {
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4 text-white">
-      <motion.div
-        className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 max-w-md w-full border border-white/20"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+    <div className="min-h-screen w-full flex items-center justify-center bg-[#F6F6F6] px-4 relative">
+      {/* Custom Cursor */}
+      <CustomCursor />
+
+      {/* Contact Form */}
+      <form
+        className="w-[90%] max-w-md bg-white p-8 rounded-lg shadow-md opacity-0 transform scale-95 transition-all duration-500 ease-out animate-fadeIn relative"
       >
-        <h2 className="text-3xl font-semibold text-center mb-6 text-white">Get in Touch</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-white">Name</label>
-            <input
-              name="name"
-              type="text"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              className="mt-1 block w-full px-4 py-2 bg-white/10 text-white placeholder-white/60 border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-white"
-            />
-          </div>
+        <h2 className="text-2xl font-semibold mb-6 text-center">Get in Touch</h2>
 
-          <div>
-            <label className="block text-sm font-medium text-white">Email</label>
-            <input
-              name="email"
-              type="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              className="mt-1 block w-full px-4 py-2 bg-white/10 text-white placeholder-white/60 border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-white"
-            />
-          </div>
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black transition-transform duration-300 ease-out hover:scale-105"
+            placeholder="Your Name"
+            required
+          />
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium text-white">Message</label>
-            <textarea
-              name="message"
-              rows="4"
-              placeholder="Your Message"
-              value={formData.message}
-              onChange={handleChange}
-              className="mt-1 block w-full px-4 py-2 bg-white/10 text-white placeholder-white/60 border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-white"
-            ></textarea>
-          </div>
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black transition-transform duration-300 ease-out hover:scale-105"
+            placeholder="Your Email"
+            required
+          />
+        </div>
 
-          <motion.button
-            type="submit"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            className="w-full bg-white text-black py-2 rounded-md font-semibold transition"
-          >
-            Send Message
-          </motion.button>
-        </form>
-      </motion.div>
+        <div className="mb-4">
+          <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows={4}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black transition-transform duration-300 ease-out hover:scale-105"
+            placeholder="Your Message"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-black text-white py-2 rounded-md transition-transform duration-300 ease-out hover:scale-105 hover:bg-gray-800"
+        >
+          Send Message
+        </button>
+      </form>
+
+      {/* Animation Keyframes */}
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.5s forwards;
+        }
+      `}</style>
     </div>
   );
-}
+};
+
+export default Contact;

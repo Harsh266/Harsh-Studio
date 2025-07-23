@@ -15,10 +15,10 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-black shadow sticky top-0 z-50 px-6 sm:px-8 py-4 flex items-center justify-between">
+    <nav className="bg-white shadow sticky top-0 z-50 px-6 sm:px-8 py-4 flex items-center justify-between">
       {/* Logo */}
       <motion.div
-        className="text-2xl font-bold tracking-tight text-gray-100"
+        className="text-2xl font-bold tracking-tight text-black"
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
@@ -28,7 +28,7 @@ export default function Navbar() {
 
       {/* Desktop Nav */}
       <motion.ul
-        className="hidden md:flex space-x-8 font-medium text-gray-300"
+        className="hidden md:flex space-x-8 font-medium text-black"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -42,14 +42,14 @@ export default function Navbar() {
             {item.link.startsWith("#") ? (
               <a
                 href={item.link}
-                className="transition-colors duration-200 hover:text-white"
+                className="transition-colors duration-200 hover:text-black"
               >
                 {item.name}
               </a>
             ) : (
               <Link
                 to={item.link}
-                className="transition-colors duration-200 hover:text-white"
+                className="transition-colors duration-200 hover:text-black"
               >
                 {item.name}
               </Link>
@@ -60,7 +60,7 @@ export default function Navbar() {
 
       {/* Social Icons */}
       <motion.div
-        className="hidden md:flex items-center space-x-5 text-2xl text-gray-300"
+        className="hidden md:flex items-center space-x-5 text-2xl text-black"
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
@@ -84,7 +84,7 @@ export default function Navbar() {
         <motion.a
           href="https://github.com/Harsh266"
           target="_blank"
-          whileHover={{ scale: 1.2, color: "#ffffff" }}
+          whileHover={{ scale: 1.2, color: "#000000" }}
           transition={{ type: "spring", stiffness: 300 }}
         >
           <FaGithub />
@@ -93,7 +93,7 @@ export default function Navbar() {
 
       {/* Hamburger Menu */}
       <button
-        className="md:hidden text-white focus:outline-none"
+        className="md:hidden text-black focus:outline-none"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -107,9 +107,9 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            className="fixed top-0 left-0 w-64 h-full bg-black shadow-lg z-50 flex flex-col px-8 py-16 space-y-6"
+            className="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 flex flex-col px-8 py-16 space-y-6"
           >
-            <ul className="space-y-4 font-medium text-white">
+            <ul className="space-y-4 font-medium text-black">
               {navItems.map((item, index) => (
                 <motion.li
                   key={index}
@@ -121,7 +121,7 @@ export default function Navbar() {
                   {item.link.startsWith("#") ? (
                     <a
                       href={item.link}
-                      className="block hover:text-white transition"
+                      className="block hover:text-black transition"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}
@@ -129,7 +129,7 @@ export default function Navbar() {
                   ) : (
                     <Link
                       to={item.link}
-                      className="block hover:text-white transition"
+                      className="block hover:text-black transition"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}
@@ -139,7 +139,7 @@ export default function Navbar() {
               ))}
             </ul>
 
-            <div className="flex gap-6 mt-6 text-2xl text-white">
+            <div className="flex gap-6 mt-6 text-2xl text-black">
               <motion.a
                 href="https://instagram.com"
                 target="_blank"

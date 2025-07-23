@@ -1,221 +1,189 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import backgroundVideo from "../assets/Dots-5.mp4";
+import Typewriter from "typewriter-effect";
+import { motion } from "framer-motion";
+import { RiCornerUpRightLine } from "react-icons/ri";
 import Footer from "../components/Footer";
-import { FaProjectDiagram } from "react-icons/fa";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaPython } from "react-icons/fa";
-import { SiTailwindcss, SiMongodb, SiJavascript } from "react-icons/si";
+import CustomCursor from "../components/CustomCursor";
 
 export default function Home() {
-  const roles = ["Web Developer", "Designer", "Software Developer"];
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % roles.length);
-    }, 2500);
-    return () => clearInterval(timer);
-  }, []);
-
+  
   return (
-    <div className="relative h-screen w-full scrollbar-hide custom-scroll">
-      {/* Fixed Home Section */}
-      <div className="fixed inset-0 z-0 bg-black flex items-center justify-center text-white overflow-y-auto scroll-smooth">
-        <div className="max-w-6xl w-full px-4">
-          <div className="flex flex-col gap-2 items-start">
-            <motion.h1
-              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-tight mb-0"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              I'm Harsh Vekariya,<br />
-              <span className="block h-[60px] min-w-[800px] sm:h-[90px] md:h-[80px] lg:h-[100px] relative overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={roles[index]}
-                    className="absolute text-blue-400"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -30 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    a {roles[index]}.
-                  </motion.span>
-                </AnimatePresence>
-              </span>
-            </motion.h1>
+    <div className="w-full h-screen relative overflow-hidden">
+      <CustomCursor />
 
-            <motion.p
-              className="mb-10 text-lg max-w-2xl"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
-            >
-              Harsh Studios brings your ideas to life with{" "}
-              <span className="font-semibold text-blue-300">software development</span>
-              {" "}and{" "}
-              <span className="font-semibold text-pink-300">innovative designs</span>.
-              Let’s create something extraordinary together.
-            </motion.p>
-
-            <motion.a
-              href="/Your_CV.pdf"
-              download
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-              whileHover="hover"
-              whileTap={{ scale: 0.97 }}
-              className="group inline-flex items-center w-fit px-8 py-4 rounded-full border-2 border-white text-white bg-white/10 transition-all duration-300 text-lg sm:text-xl font-medium shadow-lg"
-            >
-              Download CV
-              <motion.span
-                className="ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-blue-600 text-white"
-                variants={{
-                  hover: {
-                    x: 6,
-                    rotate: 90,
-                    backgroundColor: "#ffffff",
-                    color: "#2563eb",
-                  },
-                }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <ArrowRight className="w-5 h-5" />
-              </motion.span>
-            </motion.a>
-          </div>
-        </div>
-      </div>
-
-      {/* Scrollable Section */}
-      <div
-        id="about"
-        className="absolute top-0 left-0 w-full h-full overflow-y-auto scroll-smooth z-10 pt-[100vh] hide-scrollbar"
+      {/* Hero Section - Fixed */}
+      <section
+        className="fixed top-0 left-0 h-screen w-full overflow-hidden bg-black z-10"
+        id="herosec"
       >
-        <div className="bg-white text-black px-4 sm:px-6 md:px-10 py-10 sm:py-16 md:py-24 rounded-t-[24px] shadow-2xl min-h-[100vh] transition-colors duration-300 ease-in-out">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 md:gap-16">
-            {/* Text Content */}
-            <div className="flex-1 space-y-6">
-              <motion.h2
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <span className="inline-block mb-2 text-blue-600">About Me</span>
-              </motion.h2>
+        <video
+          muted
+          autoPlay
+          loop
+          playsInline
+          src={backgroundVideo}
+          className="absolute top-0 left-0 h-full w-full object-cover z-0 opacity-80"
+        />
 
-              <motion.p
-                className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                I’m <strong>Harsh Vekariya</strong>, a BSc IT student with a
-                specialization in Data Science. I’m skilled in technologies like
-                <strong> HTML, CSS, JavaScript, Tailwind CSS, Java, Python, SQL,
-                  PHP, DSA, React.js, Node.js, Express.js, MongoDB</strong>, and
-                UI/UX tools such as <strong>Figma</strong> and <strong>Adobe XD</strong>. I’m passionate about building
-                intuitive and visually pleasing digital experiences.
-              </motion.p>
+        <div className="relative z-10 h-full w-full flex flex-col justify-center text-white px-6 sm:px-16 gap-6">
+          <p className="text-3xl sm:text-7xl font-bold drop-shadow-[0_0_15px_black]">
+            I'm Harsh Vekariya, a{" "}
+            <span className="text-[#ffffff]">
+              <Typewriter
+                options={{
+                  strings: [
+                    "Software Developer.",
+                    "Designer.",
+                    "Web Developer.",
+                  ],
+                  autoStart: true,
+                  loop: true,
+                  delay: 60,
+                  deleteSpeed: 40,
+                }}
+              />
+            </span>
+          </p>
 
-              <motion.a
-                href="#portfolio"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 mt-4 rounded-full text-base md:text-lg font-medium bg-black text-white shadow-md hover:bg-gray-900 transition"
-              >
-                <FaProjectDiagram />
-                See All Projects
-                <MdKeyboardArrowRight className="text-xl" />
-              </motion.a>
+          <p className="text-xs sm:text-base sm:w-4/5 bg-black bg-opacity-60 p-2 sm:p-4 rounded-md leading-relaxed">
+            I am Harsh Vekariya, a BSc IT student specializing in Data Science. I am
+            proficient in HTML, CSS, JavaScript, Tailwind CSS, Java, Python, SQL,
+            PHP, C++, DSA, Blender, Photoshop, After Effects, Premiere Pro,
+            Figma, and Adobe XD.
+          </p>
+
+          <motion.a
+            href="/your-cv.pdf" // replace with your file or section link
+            download
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
+            className="group relative w-fit px-6 py-3 rounded-full border-2 border-white/40 backdrop-blur-md bg-white/20 flex items-center gap-4 cursor-pointer overflow-hidden text-white"
+          >
+            {/* Expanding blue background */}
+            <motion.span
+              layout
+              layoutId="circle"
+              className="absolute top-0 right-0 w-4 h-4 bg-[#2E6BFA] rounded-full z-0 origin-top-right scale-0 group-hover:scale-[25] transition-all duration-700 ease-in-out"
+            />
+
+            {/* Button text */}
+            <span className="relative z-10 text-base sm:text-lg font-medium transition-transform duration-300 group-hover:translate-x-1">
+              Download CV
+            </span>
+
+            {/* Arrow Icon */}
+            <span className="relative z-10 bg-[#2E6BFA] text-xl sm:text-2xl text-black rounded-full py-1 px-3 transition-transform duration-300 group-hover:scale-110">
+              <RiCornerUpRightLine />
+            </span>
+          </motion.a>
+        </div>
+      </section>
+
+      {/* About Section - Scrollable container */}
+      <div
+        className="absolute top-0 left-0 w-full h-screen overflow-y-scroll pt-[100vh] z-20"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        <style jsx>{`
+          div::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
+
+        <section
+          id="About"
+          className="w-full bg-gray-100 text-black rounded-t-3xl"
+        >
+          <div className="flex flex-col sm:flex-row w-full min-h-screen overflow-hidden">
+            <div className="sm:w-2/5 w-full pt-[120px] flex flex-col justify-center">
+              <div className="flex flex-col gap-4 h-full px-4 sm:px-8 md:px-16 py-10">
+                <motion.h2
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="text-3xl sm:text-4xl font-bold text-[#2E6BFA] tracking-wide"
+                >
+                  About Me
+                </motion.h2>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="font-medium sm:text-3xl text-2xl mt-2 mb-[-5px]"
+                >
+                  Hello, I'm{" "}
+                  <span className="font-bold bg-gradient-to-r from-[#2E6BFA] to-[#00F5D4] text-transparent bg-clip-text">
+                    Harsh Vekariya
+                  </span>
+                  ,
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="font-medium text-sm leading-9 text-gray-800"
+                >
+                  I’m Harsh Vekariya, a BSc IT student with a specialization in Data Science. I’m skilled in technologies like{" "}
+                  <span className="text-black font-bold px-1 rounded">
+                    HTML, CSS, JavaScript, Tailwind CSS, Java, Python, SQL, PHP, DSA, React.js, Node.js, Express.js, MongoDB
+                  </span>{" "}
+                  and UI/UX tools such as{" "}
+                  <span className="text-black font-bold px-1 rounded">Figma and Adobe XD</span>. I’m passionate about building
+                  intuitive and visually pleasing digital experiences.
+                </motion.p>
+
+                <motion.a
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.6, delay: 0.6, type: "spring", stiffness: 100 }}
+                  href="/portfolio"
+                  className="group relative bg-black w-fit px-6 py-3 rounded-full flex gap-2 mt-6 cursor-pointer text-white text-lg font-medium items-center transition-all duration-300 hover:pr-10"
+                >
+                  See all Projects
+                  <RiCornerUpRightLine
+                    className="absolute right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-1 group-hover:translate-x-0"
+                  />
+                </motion.a>
+
+              </div>
             </div>
 
-            {/* Project Thumbnails */}
-            <motion.div
-              className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <p className="col-span-2 sm:col-span-3 text-center sm:text-left text-base sm:text-lg font-medium mb-2 text-slate-700">
+            <div className="sm:w-3/5 w-full border-b flex flex-col text-white p-8 justify-center sm:items-center mt-6">
+              <p className="text-black pb-4 sm:w-fit sm:font-medium font-bold w-3/5">
                 Some of my Projects. Hope you like it. 😊
               </p>
-
-              {[
-                "/images/Mockup 2.png",
-                "/images/Thumbnail - 2.png",
-                "/images/Mockup 3.png",
-                "/images/Mockup 5.png",
-                "/images/Mockup 4.png",
-                "/images/Mockup 1.png",
-              ].map((img, idx) => (
-                <motion.div
-                  key={idx}
-                  className="rounded-xl overflow-hidden shadow hover:shadow-xl "
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 100 }}
-                >
-                  <img
-                    src={img}
-                    alt={`project-${idx + 1}`}
-                    className="w-full h-28 xs:h-32 sm:h-36 md:h-44 object-cover cursor-pointer"
-                    draggable={false}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  "https://cdn.dribbble.com/userupload/14315397/file/original-b2d9fa368a9fb4cdd8575ee4ecef06c5.jpg?resize=400x300&vertical=center",
+                  "https://cdn.dribbble.com/userupload/14358758/file/original-fe8d50a2a20252e11da5aa48e7a9c5f4.png?resize=400x300&vertical=center",
+                  "https://cdn.dribbble.com/userupload/11438126/file/still-1cded3562249cd2125b72c65cacc0948.png?resize=400x300&vertical=center",
+                  "https://cdn.dribbble.com/userupload/12455906/file/original-d7978c76110fc6f5be9b0742854972cb.png?crop=0x0-2052x1539&resize=400x300&vertical=center",
+                  "https://cdn.dribbble.com/userupload/15011616/file/original-0bdc307bbd21d0b238bca58bfe5a5685.png?resize=400x300&vertical=center",
+                  "https://cdn.dribbble.com/userupload/16092344/file/original-077c8614e3795032508401ebd6920a6f.png?resize=400x300&vertical=center",
+                ].map((src, i) => (
+                  <div
+                    className="image-container group cursor-pointer overflow-hidden rounded-lg shadow-md transition hover:shadow-lg"
+                    key={i}
+                  >
+                    <img
+                      src={src}
+                      alt={`Project ${i + 1}`}
+                      className="object-cover w-full h-56 group-hover:scale-105 transition"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-
-          {/* ✅ Skills Section */}
-          <div className="mt-20">
-            <motion.h3
-              className="text-3xl font-bold text-center text-gray-900 mb-10"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              My Skills
-            </motion.h3>
-
-            <motion.div
-              className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6 max-w-4xl mx-auto cursor-pointer"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.3 }}
-            >
-              {[
-                { icon: <FaHtml5 className="text-orange-600" />, name: "HTML" },
-                { icon: <FaCss3Alt className="text-blue-600" />, name: "CSS" },
-                { icon: <SiJavascript className="text-yellow-500" />, name: "JavaScript" },
-                { icon: <SiTailwindcss className="text-cyan-400" />, name: "Tailwind" },
-                { icon: <FaReact className="text-blue-400" />, name: "React.js" },
-                { icon: <FaNodeJs className="text-green-600" />, name: "Node.js" },
-                { icon: <SiMongodb className="text-green-500" />, name: "MongoDB" },
-                { icon: <FaPython className="text-blue-500" />, name: "Python" },
-              ].map((skill, i) => (
-                <motion.div
-                  key={i}
-                  className="flex flex-col items-center p-4 bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="text-3xl mb-2">{skill.icon}</div>
-                  <p className="text-sm font-semibold text-gray-700">{skill.name}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-
-        <Footer />
+          <Footer />
+        </section>
       </div>
     </div>
   );
