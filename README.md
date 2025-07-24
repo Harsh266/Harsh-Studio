@@ -47,6 +47,8 @@ If you'd like to connect or collaborate, feel free to reach out:
 
 📧 Email: harshvekriya441@gmail.com
 
+---
+
 ## 📄 License
 This project is licensed under the MIT License.
 
