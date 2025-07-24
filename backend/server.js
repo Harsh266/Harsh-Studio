@@ -11,7 +11,7 @@ app.use(cookieParser());
 
 // ✅ Allow frontend to access backend
 app.use(cors({
-  origin: ["http://localhost:5173","https://harsh-studio-2lt6.vercel.app"],
+  origin: "http://localhost:5173",
   credentials: true
 }));
 

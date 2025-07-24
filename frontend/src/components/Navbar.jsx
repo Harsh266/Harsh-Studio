@@ -15,10 +15,10 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white shadow sticky top-0 z-50 px-6 sm:px-8 py-4 flex items-center justify-between">
+    <nav className="bg-white shadow sticky top-0 z-50 px-6 sm:px-8 py-2 flex items-center justify-between">
       {/* Logo */}
       <motion.div
-        className="text-2xl font-bold tracking-tight text-black"
+        className="text-xl font-bold tracking-tight text-black"
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
@@ -28,7 +28,7 @@ export default function Navbar() {
 
       {/* Desktop Nav */}
       <motion.ul
-        className="hidden md:flex space-x-8 font-medium text-black"
+        className="hidden md:flex space-x-8 font-medium text-black text-sm"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -60,7 +60,7 @@ export default function Navbar() {
 
       {/* Social Icons */}
       <motion.div
-        className="hidden md:flex items-center space-x-5 text-2xl text-black"
+        className="hidden md:flex items-center space-x-5 text-xl text-black"
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}

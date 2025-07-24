@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import CustomCursor from "../components/CustomCursor";
 
 export default function Home() {
-  
+
   return (
     <div className="w-full h-screen relative overflow-hidden">
       <CustomCursor />
@@ -47,9 +47,8 @@ export default function Home() {
 
           <p className="text-xs sm:text-base sm:w-4/5 bg-black bg-opacity-60 p-2 sm:p-4 rounded-md leading-relaxed">
             I am Harsh Vekariya, a BSc IT student specializing in Data Science. I am
-            proficient in HTML, CSS, JavaScript, Tailwind CSS, Java, Python, SQL,
-            PHP, C++, DSA, Blender, Photoshop, After Effects, Premiere Pro,
-            Figma, and Adobe XD.
+            proficient in HTML, CSS, JavaScript, Tailwind CSS, Python,
+            PHP, DSA, React, Node.js, Express.js, MongoDB, MySQL, Figma, and Adobe XD.
           </p>
 
           <motion.a
@@ -97,14 +96,15 @@ export default function Home() {
           id="About"
           className="w-full bg-gray-100 text-black rounded-t-3xl"
         >
-          <div className="flex flex-col sm:flex-row w-full min-h-screen overflow-hidden">
-            <div className="sm:w-2/5 w-full pt-[120px] flex flex-col justify-center">
-              <div className="flex flex-col gap-4 h-full px-4 sm:px-8 md:px-16 py-10">
+          <div className="flex flex-col sm:flex-row w-full min-h-screen overflow-hidden px-6 py-25 gap-y-12 sm:gap-y-0 sm:gap-x-8">
+            {/* Left Side: About Me */}
+            <div className="sm:w-1/2 w-full flex flex-col justify-center">
+              <div className="flex flex-col gap-4 h-full">
                 <motion.h2
                   initial={{ opacity: 0, y: -30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="text-3xl sm:text-4xl font-bold text-[#2E6BFA] tracking-wide"
+                  className="text-2xl sm:text-3xl font-bold text-[#2E6BFA] tracking-wide"
                 >
                   About Me
                 </motion.h2>
@@ -113,7 +113,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="font-medium sm:text-3xl text-2xl mt-2 mb-[-5px]"
+                  className="font-medium sm:text-2xl text-2xl mt-2"
                 >
                   Hello, I'm{" "}
                   <span className="font-bold bg-gradient-to-r from-[#2E6BFA] to-[#00F5D4] text-transparent bg-clip-text">
@@ -126,7 +126,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="font-medium text-sm leading-9 text-gray-800"
+                  className="font-medium text-sm leading-8 text-gray-800 "
                 >
                   I’m Harsh Vekariya, a BSc IT student with a specialization in Data Science. I’m skilled in technologies like{" "}
                   <span className="text-black font-bold px-1 rounded">
@@ -151,15 +151,16 @@ export default function Home() {
                     className="absolute right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-1 group-hover:translate-x-0"
                   />
                 </motion.a>
-
               </div>
             </div>
 
-            <div className="sm:w-3/5 w-full border-b flex flex-col text-white p-8 justify-center sm:items-center mt-6">
-              <p className="text-black pb-4 sm:w-fit sm:font-medium font-bold w-3/5">
+            {/* Right Side: Project Gallery */}
+            <div className="sm:w-1/2 w-full flex flex-col text-black justify-center">
+              <p className="pb-4 font-bold text-lg">
                 Some of my Projects. Hope you like it. 😊
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {[
                   "https://cdn.dribbble.com/userupload/14315397/file/original-b2d9fa368a9fb4cdd8575ee4ecef06c5.jpg?resize=400x300&vertical=center",
                   "https://cdn.dribbble.com/userupload/14358758/file/original-fe8d50a2a20252e11da5aa48e7a9c5f4.png?resize=400x300&vertical=center",
@@ -169,19 +170,20 @@ export default function Home() {
                   "https://cdn.dribbble.com/userupload/16092344/file/original-077c8614e3795032508401ebd6920a6f.png?resize=400x300&vertical=center",
                 ].map((src, i) => (
                   <div
-                    className="image-container group cursor-pointer overflow-hidden rounded-lg shadow-md transition hover:shadow-lg"
+                    className="aspect-square bg-white group cursor-pointer overflow-hidden rounded-lg shadow-md transition hover:shadow-lg"
                     key={i}
                   >
                     <img
                       src={src}
                       alt={`Project ${i + 1}`}
-                      className="object-cover w-full h-56 group-hover:scale-105 transition"
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                 ))}
               </div>
             </div>
           </div>
+
           <Footer />
         </section>
       </div>
