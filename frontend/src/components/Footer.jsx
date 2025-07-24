@@ -35,7 +35,22 @@ const Footer = () => {
               whileHover={{ scale: 1.13, x: 10, color: '#2563eb' }}
               transition={{ duration: 0.18, type: 'spring', stiffness: 350 }}
             >
-              <a href="#aboutme" className="hover:text-blue-600 font-medium transition-colors duration-200">About me</a>
+              <button
+                className="hover:text-blue-600 font-medium transition-colors duration-200 bg-transparent border-none outline-none cursor-pointer"
+                onClick={() => {
+                  if (window.location.pathname === "/") {
+                    const el = document.getElementById("About");
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  } else {
+                    localStorage.setItem("scrollToAbout", "1");
+                    window.location.href = "/";
+                  }
+                }}
+              >
+                About me
+              </button>
             </motion.li>
             <motion.li
               whileHover={{ scale: 1.13, x: 10, color: '#2563eb' }}

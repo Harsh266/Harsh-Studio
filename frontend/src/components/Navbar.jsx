@@ -9,7 +9,7 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Home", link: "/" },
-    { name: "About", link: "#about" },
+    { name: "About", link: "about-section" },
     { name: "Contact", link: "/contact" },
     { name: "Portfolio", link: "/projects" },
   ];
@@ -39,20 +39,37 @@ export default function Navbar() {
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            {item.link.startsWith("#") ? (
-              <a
-                href={item.link}
-                className="transition-colors duration-200 hover:text-black"
+            {item.name === "About" ? (
+              <button
+                className="transition-colors duration-200 hover:text-black bg-transparent border-none outline-none cursor-pointer"
+                onClick={() => {
+                  if (window.location.pathname === "/") {
+                    const el = document.getElementById("About");
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  } else {
+                    localStorage.setItem("scrollToAbout", "1");
+                    window.location.href = "/";
+                  }
+                }}
               >
                 {item.name}
-              </a>
-            ) : (
+              </button>
+            ) : item.link.startsWith("/") ? (
               <Link
                 to={item.link}
                 className="transition-colors duration-200 hover:text-black"
               >
                 {item.name}
               </Link>
+            ) : (
+              <a
+                href={item.link}
+                className="transition-colors duration-200 hover:text-black"
+              >
+                {item.name}
+              </a>
             )}
           </motion.li>
         ))}
@@ -118,15 +135,27 @@ export default function Navbar() {
                   transition={{ delay: index * 0.05 }}
                   whileHover={{ scale: 1.1 }}
                 >
-                  {item.link.startsWith("#") ? (
-                    <a
-                      href={item.link}
-                      className="block hover:text-black transition"
-                      onClick={() => setIsOpen(false)}
+                  {item.name === "About" ? (
+                    <button
+                      className="block hover:text-black transition bg-transparent border-none outline-none cursor-pointer w-full text-left"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setTimeout(() => {
+                          if (window.location.pathname === "/") {
+                            const el = document.getElementById("About");
+                            if (el) {
+                              el.scrollIntoView({ behavior: "smooth" });
+                            }
+                          } else {
+                            localStorage.setItem("scrollToAbout", "1");
+                            window.location.href = "/";
+                          }
+                        }, 100);
+                      }}
                     >
                       {item.name}
-                    </a>
-                  ) : (
+                    </button>
+                  ) : item.link.startsWith("/") ? (
                     <Link
                       to={item.link}
                       className="block hover:text-black transition"
@@ -134,6 +163,14 @@ export default function Navbar() {
                     >
                       {item.name}
                     </Link>
+                  ) : (
+                    <a
+                      href={item.link}
+                      className="block hover:text-black transition"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.name}
+                    </a>
                   )}
                 </motion.li>
               ))}
