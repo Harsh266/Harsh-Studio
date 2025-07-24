@@ -25,10 +25,10 @@ export default function Home() {
           className="absolute top-0 left-0 h-full w-full object-cover z-0 opacity-80"
         />
 
-        <div className="relative z-10 h-full w-full flex flex-col justify-center text-white px-6 sm:px-16 gap-6">
-          <div className="text-3xl sm:text-7xl font-bold drop-shadow-[0_0_15px_black] flex flex-wrap items-center gap-2">
+        <div className="relative z-10 h-full w-full flex flex-col justify-center text-white px-6 sm:px-16 gap-4">
+          <div className="text-2xl sm:text-6xl font-medium drop-shadow-[0_0_10px_black] flex flex-col items-start leading-tight gap-1">
             <span>I'm Harsh Vekariya, a</span>
-            <span className="text-[#ffffff]">
+            <span className="text-[#ffffff] block w-full min-h-[2.5em]">
               <Typewriter
                 options={{
                   strings: [
@@ -38,47 +38,37 @@ export default function Home() {
                   ],
                   autoStart: true,
                   loop: true,
-                  delay: 60,
-                  deleteSpeed: 40,
+                  delay: 120,
+                  deleteSpeed: 60,
                 }}
               />
             </span>
           </div>
 
-          <p className="text-xs sm:text-base sm:w-4/5 bg-black bg-opacity-60 p-2 sm:p-4 rounded-md leading-relaxed">
-            I am Harsh Vekariya, a BSc IT student specializing in Data Science. I am
-            proficient in HTML, CSS, JavaScript, Tailwind CSS, Python,
-            PHP, DSA, React, Node.js, Express.js, MongoDB, MySQL, Figma, and Adobe XD.
+          <p className="text-sm sm:text-base sm:w-4/5 bg-black/50 p-3 sm:p-4 rounded-md leading-relaxed font-light">
+            I am Harsh Vekariya, a BSc IT student specializing in Data Science. I'm proficient in HTML, CSS, JavaScript, Tailwind CSS, Python, PHP, DSA, React, Node.js, Express.js, MongoDB, MySQL, Figma, and Adobe XD.
           </p>
 
-          <motion.a
-            href="/your-cv.pdf" // replace with your file or section link
+          <a
+            href="/your-cv.pdf"
             download
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-            className="group relative w-fit px-6 py-3 rounded-full border-2 border-white/40 backdrop-blur-md bg-white/20 flex items-center gap-4 cursor-pointer overflow-hidden text-white"
+            className="group relative w-fit px-6 py-2.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-md flex items-center gap-3 text-white shadow-sm hover:shadow-xl cursor-pointer overflow-hidden transition-all duration-300"
           >
-            {/* Expanding blue background */}
-            <motion.span
-              layout
-              layoutId="circle"
-              className="absolute top-0 right-0 w-4 h-4 bg-[#2E6BFA] rounded-full z-0 origin-top-right scale-0 group-hover:scale-[25] transition-all duration-700 ease-in-out"
-            />
+            {/* Hover glow background */}
+            <span className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500 transform rounded-full z-0" />
 
-            {/* Button text */}
-            <span className="relative z-10 text-base sm:text-lg font-medium transition-transform duration-300 group-hover:translate-x-1">
+            {/* Button Text */}
+            <span className="relative z-10 text-sm sm:text-base font-normal group-hover:text-yellow-200 transition-all duration-300 transform group-hover:translate-x-1">
               Download CV
             </span>
 
             {/* Arrow Icon */}
-            <span className="relative z-10 bg-[#2E6BFA] text-xl sm:text-2xl text-black rounded-full py-1 px-3 transition-transform duration-300 group-hover:scale-110">
+            <span className="relative z-10 text-lg sm:text-xl transition-all duration-300 transform group-hover:rotate-12 group-hover:scale-110 group-hover:text-yellow-200">
               <RiCornerUpRightLine />
             </span>
-          </motion.a>
+          </a>
         </div>
+
       </section>
 
       {/* About Section - Scrollable container */}
