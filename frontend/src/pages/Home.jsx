@@ -115,11 +115,7 @@ export default function Home() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="font-medium sm:text-2xl text-2xl mt-2"
                 >
-                  Hello, I'm{" "}
-                  <span className="font-bold bg-gradient-to-r from-[#2E6BFA] to-[#00F5D4] text-transparent bg-clip-text">
-                    Harsh Vekariya
-                  </span>
-                  ,
+                  Hello, I'm <span className="font-bold text-black">Harsh Vekariya</span>,
                 </motion.p>
 
                 <motion.p
@@ -143,7 +139,7 @@ export default function Home() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ duration: 0.6, delay: 0.6, type: "spring", stiffness: 100 }}
-                  href="/portfolio"
+                  href="/projects"
                   className="group relative bg-black w-fit px-6 py-3 rounded-full flex gap-2 mt-6 cursor-pointer text-white text-lg font-medium items-center transition-all duration-300 hover:pr-10"
                 >
                   See all Projects
