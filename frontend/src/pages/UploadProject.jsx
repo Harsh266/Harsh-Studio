@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import axios from "../api/axios";
+// import axios from "../api/axios";
 
 function UploadProject() {
   const [formData, setFormData] = useState({
