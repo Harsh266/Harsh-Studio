@@ -6,10 +6,12 @@ import Footer from "../components/Footer";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
+
 function Projects() {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -20,6 +22,8 @@ function Projects() {
       } catch (err) {
         console.error("Failed to fetch projects:", err);
         setError("Something went wrong while fetching projects.");
+      } finally {
+        setLoading(false);
       }
     };
     fetchProjects();
@@ -34,30 +38,50 @@ function Projects() {
           My Projects
         </h1>
 
-        {error && (
-          <p className="text-red-500 text-center mb-6">{error}</p>
-        )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 place-items-center">
-          {projects.map((project) => (
+        {loading ? (
+          <div className="flex flex-col items-center justify-center min-h-[300px]">
+            <div className="w-14 h-14 border-4 border-black border-t-transparent rounded-full animate-spin mb-4"></div>
+            <span className="text-black font-medium text-lg">Loading projects...</span>
+          </div>
+        ) : (
+          <>
+            {error && (
+              <p className="text-red-500 text-center mb-6">{error}</p>
+            )}
             <motion.div
-              key={project.id}
-              onClick={() => setSelectedProject(project)}
-              className="cursor-pointer bg-white rounded-xl p-4 w-full max-w-sm transition-all shadow-md border-2 border-transparent hover:border-blue-400 hover:shadow-xl"
-              whileHover={{ scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 place-items-center"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              <img
-                src={project.image || "https://via.placeholder.com/400x300?text=No+Image"}
-                alt={project.name || "Project Image"}
-                className="rounded-md w-full h-48 object-cover"
-              />
-              <h2 className="text-center text-lg font-semibold mt-4">
-                {project.name || "Untitled Project"}
-              </h2>
+              {projects.map((project) => (
+                <motion.div
+                  key={project.id}
+                  onClick={() => setSelectedProject(project)}
+                  className="cursor-pointer bg-white rounded-xl p-4 w-full max-w-sm transition-all shadow-md border-2 border-transparent hover:border-blue-400 hover:shadow-xl"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <img
+                    src={
+                      project.image
+                        ? project.image.startsWith("http") || project.image.startsWith("/")
+                          ? project.image
+                          : `/images/${project.image}`
+                        : "https://via.placeholder.com/400x300?text=No+Image"
+                    }
+                    alt={project.name || "Project Image"}
+                    className="rounded-md w-full h-48 object-cover"
+                  />
+                  <h2 className="text-center text-lg font-semibold mt-4">
+                    {project.name || "Untitled Project"}
+                  </h2>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
-        </div>
+          </>
+        )}
 
         {/* MODAL */}
         <AnimatePresence>
@@ -83,7 +107,13 @@ function Projects() {
         </button>
 
         <img
-          src={selectedProject.image || "https://via.placeholder.com/600x400?text=No+Preview"}
+          src={
+            selectedProject.image
+              ? selectedProject.image.startsWith("http") || selectedProject.image.startsWith("/")
+                ? selectedProject.image
+                : `/images/${selectedProject.image}`
+              : "https://via.placeholder.com/600x400?text=No+Preview"
+          }
           alt={selectedProject.name}
           className="rounded-md mb-4 w-full max-h-[300px] object-cover"
         />
