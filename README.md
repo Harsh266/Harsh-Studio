@@ -40,14 +40,14 @@
 | Vercel           | Deployment platform            |
 
 ---
-##🔗 Contact
+## 🔗 Contact
 If you'd like to connect or collaborate, feel free to reach out:
 
 💻 GitHub: (https://github.com/Harsh266)
 
 📧 Email: harshvekriya441@gmail.com
 
-##📄 License
+## 📄 License
 This project is licensed under the MIT License.
 
 
