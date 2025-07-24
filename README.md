@@ -1,25 +1,53 @@
-🎨 About Harsh Studio
-Harsh Studio is a personal and professional portfolio website designed to showcase creative work, projects, and digital experiments. Built with modern web technologies like React, Tailwind CSS, and Framer Motion, it combines elegant animations with a sleek user interface to deliver an engaging and interactive experience.
+# 🎨 Harsh Studio
 
-The platform is more than just a portfolio—it's a digital identity that highlights projects, skills, social links, and contact details in a visually appealing format. From smooth transitions to responsive layouts, every section of Harsh Studio is crafted to reflect creativity, professionalism, and modern design trends.
+**Harsh Studio** is a modern and interactive portfolio website designed to showcase personal and professional work in a creative and visually stunning way. Built using the latest frontend technologies like **React**, **Tailwind CSS**, and **Framer Motion**, this website represents a digital identity that blends functionality with style.
 
-✨ Key Features
-Fully responsive design across all devices
+---
 
-Smooth scroll navigation and animated transitions
+## 🚀 Live Demo
 
-Custom cursor and motion effects using Framer Motion
+🔗 [Click here to view the live site](https://harsh-studio-2lt6.vercel.app)
 
-Dedicated sections for About, Projects, and Contact
+---
 
-Integrated social media links (Instagram, Behance, GitHub)
+## 🖼️ Preview
 
-Video/image backgrounds for a modern aesthetic
+![Harsh Studio Preview](./preview.png)
 
-🛠️ Tech Stack
-Frontend: React.js, Tailwind CSS, Framer Motion
+---
 
-Version Control: Git & GitHub
+## ✨ Features
 
-Deployment: Vercel
+- ⚡ Fully responsive design for all screen sizes
+- 🎥 Background video and smooth transition animations
+- 🖱️ Custom animated cursor for a unique user experience
+- 🎨 Stylish sections for About, Projects, and Contact
+- 🔗 Integrated social links (Instagram, Behance, GitHub)
+- 📂 Project showcase section with hover effects
+- 📬 Contact form or section for easy reach
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology       | Description                    |
+|------------------|--------------------------------|
+| React.js         | Frontend JavaScript library    |
+| Tailwind CSS     | Utility-first CSS framework    |
+| Framer Motion    | Animation library for React    |
+| Vite             | Fast frontend build tool       |
+| Git & GitHub     | Version control & hosting      |
+| Vercel           | Deployment platform            |
+
+---
+##🔗 Contact
+If you'd like to connect or collaborate, feel free to reach out:
+
+💻 GitHub: (https://github.com/Harsh266)
+
+📧 Email: harshvekriya441@gmail.com
+
+📄 License
+This project is licensed under the MIT License.
+
 
