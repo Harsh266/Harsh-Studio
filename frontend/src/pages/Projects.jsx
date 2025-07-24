@@ -1,7 +1,10 @@
+
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CustomCursor from "../components/CustomCursor";
 import Footer from "../components/Footer";
+import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
@@ -11,29 +14,14 @@ function Projects() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/projects", {
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          setProjects(data);
-        } else {
-          throw new Error("Response is not an array");
-        }
+        const querySnapshot = await getDocs(collection(db, "projects"));
+        const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setProjects(data);
       } catch (err) {
         console.error("Failed to fetch projects:", err);
         setError("Something went wrong while fetching projects.");
       }
     };
-
     fetchProjects();
   }, []);
 
@@ -53,7 +41,7 @@ function Projects() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 place-items-center">
           {projects.map((project) => (
             <motion.div
-              key={project._id}
+              key={project.id}
               onClick={() => setSelectedProject(project)}
               className="cursor-pointer bg-white rounded-xl p-4 w-full max-w-sm transition-all shadow-md border-2 border-transparent hover:border-blue-400 hover:shadow-xl"
               whileHover={{ scale: 1.03 }}

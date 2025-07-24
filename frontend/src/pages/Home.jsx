@@ -26,8 +26,8 @@ export default function Home() {
         />
 
         <div className="relative z-10 h-full w-full flex flex-col justify-center text-white px-6 sm:px-16 gap-6">
-          <p className="text-3xl sm:text-7xl font-bold drop-shadow-[0_0_15px_black]">
-            I'm Harsh Vekariya, a{" "}
+          <div className="text-3xl sm:text-7xl font-bold drop-shadow-[0_0_15px_black] flex flex-wrap items-center gap-2">
+            <span>I'm Harsh Vekariya, a</span>
             <span className="text-[#ffffff]">
               <Typewriter
                 options={{
@@ -43,7 +43,7 @@ export default function Home() {
                 }}
               />
             </span>
-          </p>
+          </div>
 
           <p className="text-xs sm:text-base sm:w-4/5 bg-black bg-opacity-60 p-2 sm:p-4 rounded-md leading-relaxed">
             I am Harsh Vekariya, a BSc IT student specializing in Data Science. I am
@@ -86,7 +86,7 @@ export default function Home() {
         className="absolute top-0 left-0 w-full h-screen overflow-y-scroll pt-[100vh] z-20"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        <style jsx>{`
+        <style>{`
           div::-webkit-scrollbar {
             display: none;
           }
