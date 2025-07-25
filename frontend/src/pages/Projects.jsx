@@ -89,12 +89,13 @@ function Projects() {
               exit={{ opacity: 0 }}
             >
               <motion.div
-                className="bg-white p-6 rounded-2xl w-full max-w-[700px] h-[550px] shadow-2xl relative flex flex-col"
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.8 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
+  className="bg-white p-6 rounded-2xl w-full max-w-[700px] max-h-[90vh] shadow-2xl relative flex flex-col overflow-y-auto"
+  initial={{ scale: 0.8 }}
+  animate={{ scale: 1 }}
+  exit={{ scale: 0.8 }}
+  transition={{ type: 'spring', stiffness: 300 }}
+>
+
                 <button
                   onClick={() => setSelectedProject(null)}
                   className="absolute top-4 right-6 text-white bg-blue-500 px-3 py-1 rounded-md hover:bg-blue-600"
