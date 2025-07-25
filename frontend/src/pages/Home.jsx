@@ -113,7 +113,7 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   className="text-base sm:text-lg text-gray-700"
                 >
-                  Hi, I'm <span className="font-bold text-black">Harsh Vekariya</span>, a BSc IT student passionate about building clean, modern digital experiences. I love working with <span className="text-black font-semibold">React, Tailwind, Node.js, Python</span> and more.
+                  Hi, I'm <span className="font-bold text-black">Harsh Vekariya</span>, a BSc IT student passionate about building clean, modern digital experiences. I love working with <span className="text-black font-semibold">React.js, Tailwind, Node.js, Express.js, Python</span> and more.
                 </motion.p>
                 <motion.a
                   initial={{ opacity: 0, y: 10 }}
@@ -138,7 +138,7 @@ export default function Home() {
               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {[
                   "/images/Mockup 1.png",
-                  "/images/Mockup 2.png",
+                  "/images/Thumbnail - 2.png",
                   "/images/Mockup 3.png",
                   "/images/Mockup 4.png",
                   "/images/Mockup 5.png",
