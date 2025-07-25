@@ -6,7 +6,7 @@
 
 ## 🚀 Live Demo
 
-🔗 [Click here to view the live site](https://harsh-studio-2lt6.vercel.app)
+🔗 [Click here to view the live site](https://harsh-studio-24.vercel.app)
 
 ---
 
