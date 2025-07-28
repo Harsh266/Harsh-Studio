@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { RiCornerUpRightLine } from "react-icons/ri";
 import Footer from "../components/Footer";
 import CustomCursor from "../components/CustomCursor";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -57,28 +58,9 @@ export default function Home() {
             </span>
           </div>
 
-          <p className="text-sm sm:text-base sm:w-4/5 bg-black/50 p-3 sm:p-4 rounded-md leading-relaxed font-light">
-            I am Harsh Vekariya, a BSc IT student specializing in Data Science. I'm proficient in HTML, CSS, JavaScript, Tailwind CSS, Python, PHP, DSA, React, Node.js, Express.js, MongoDB, MySQL, Figma, and Adobe XD.
+          <p className="text-sm sm:text-base sm:w-3/5 bg-black/50 p-3 sm:p-4 rounded-md leading-relaxed font-light">
+            I am Harsh Vekariya, a BSc IT student specializing in Data Science. I'm proficient in HTML, CSS, JavaScript, Tailwind CSS, Python, React, Node.js, Express.js, MongoDB, MySQL, Figma, and Adobe XD.
           </p>
-
-          <a
-            href="/your-cv.pdf"
-            download
-            className="group relative w-fit px-6 py-2.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-md flex items-center gap-3 text-white shadow-sm hover:shadow-xl cursor-pointer overflow-hidden transition-all duration-300"
-          >
-            {/* Hover glow background */}
-            <span className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500 transform rounded-full z-0" />
-
-            {/* Button Text */}
-            <span className="relative z-10 text-sm sm:text-base font-normal group-hover:text-yellow-200 transition-all duration-300 transform group-hover:translate-x-1">
-              Download CV
-            </span>
-
-            {/* Arrow Icon */}
-            <span className="relative z-10 text-lg sm:text-xl transition-all duration-300 transform group-hover:rotate-12 group-hover:scale-110 group-hover:text-yellow-200">
-              <RiCornerUpRightLine />
-            </span>
-          </a>
         </div>
 
       </section>
@@ -115,18 +97,21 @@ export default function Home() {
                 >
                   Hi, I'm <span className="font-bold text-black">Harsh Vekariya</span>, a BSc IT student passionate about building clean, modern digital experiences. I love working with <span className="text-black font-semibold">React.js, Tailwind, Node.js, Express.js, Python</span> and more.
                 </motion.p>
-                <motion.a
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ duration: 0.5, delay: 0.2, type: "spring", stiffness: 120 }}
-                  href="/projects"
-                  className="group bg-blue-600 hover:bg-blue-700 w-fit px-5 py-2 rounded-full flex items-center gap-2 text-white text-base font-medium transition-all duration-300 shadow hover:shadow-lg"
                 >
-                  See Projects
-                  <RiCornerUpRightLine className="text-lg group-hover:translate-x-1 transition-transform duration-300" />
-                </motion.a>
+                  <Link
+                    to="/projects"
+                    className="group bg-blue-600 hover:bg-blue-700 w-fit px-5 py-2 rounded-full flex items-center gap-2 text-white text-base font-medium transition-all duration-300 shadow hover:shadow-lg"
+                  >
+                    See Projects
+                    <RiCornerUpRightLine className="text-lg group-hover:translate-x-1 transition-transform duration-300" />
+                  </Link>
+                </motion.div>
               </div>
             </div>
 
