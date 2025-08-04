@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import CustomCursor from "../components/CustomCursor";
 import Typewriter from "typewriter-effect";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPython, FaGitAlt } from "react-icons/fa";
+import { TbArrowBigUpLines  } from "react-icons/tb";
 import { SiMongodb, SiTailwindcss, SiExpress } from "react-icons/si";
 import { Link } from "react-router-dom";
 import React from "react";
@@ -52,6 +53,18 @@ function Home() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const [showScrollTop, setShowScrollTop] = React.useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300); // show button after 300px
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
 
   return (
     <>
@@ -231,6 +244,26 @@ function Home() {
       </div>
 
       <Footer />
+
+      {showScrollTop && (
+        <motion.button
+          onClick={scrollToTop}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 50 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="fixed bottom-6 right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 hover:bg-purple-700 text-white text-2xl sm:text-3xl rounded-full shadow-xl flex items-center justify-center transition-all"
+          whileHover={{ scale: 1.15, rotate: 5 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <motion.span
+            animate={{ y: [0, -4, 0] }}
+            transition={{ repeat: Infinity, duration: 1 }}
+          >
+            <TbArrowBigUpLines   />
+          </motion.span>
+        </motion.button>
+      )}
 
     </>
   );

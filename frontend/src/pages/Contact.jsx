@@ -3,8 +3,27 @@ import Footer from "../components/Footer";
 import CustomCursor from "../components/CustomCursor";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import React from "react";
+import { TbArrowBigUpLines } from "react-icons/tb";
 
 function Contact() {
+
+  const [showScrollTop, setShowScrollTop] = React.useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300); // show button after 300px
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
       <Navbar />
@@ -138,6 +157,26 @@ function Contact() {
 
 
       <Footer />
+      {showScrollTop && (
+        <motion.button
+          onClick={scrollToTop}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 50 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="fixed bottom-6 right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 hover:bg-purple-700 text-white text-2xl sm:text-3xl rounded-full shadow-xl flex items-center justify-center transition-all"
+          whileHover={{ scale: 1.15, rotate: 5 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <motion.span
+            animate={{ y: [0, -4, 0] }}
+            transition={{ repeat: Infinity, duration: 1 }}
+          >
+            <TbArrowBigUpLines />
+          </motion.span>
+        </motion.button>
+      )}
+
     </>
   );
 }
