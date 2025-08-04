@@ -1,153 +1,234 @@
-import backgroundVideo from "../assets/Dots-5.mp4";
-import Typewriter from "typewriter-effect";
-import { motion } from "framer-motion";
-import { RiCornerUpRightLine } from "react-icons/ri";
+import { motion, useAnimation } from "framer-motion";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CustomCursor from "../components/CustomCursor";
+import Typewriter from "typewriter-effect";
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPython, FaGitAlt } from "react-icons/fa";
+import { SiMongodb, SiTailwindcss, SiExpress } from "react-icons/si";
 import { Link } from "react-router-dom";
+import React from "react";
 import { useEffect } from "react";
 
-export default function Home() {
+// Placeholder images – replace these imports with your actual images if available
+import luxiousImg from "/images/Mockup 1.png";
+import emperhiaImg from "/images/Mockup 3.png";
+import nutritionousImg from "/images/Thumbnail - 2.png";
+
+
+
+function Home() {
+
+  const skills = [
+    { name: "HTML5", icon: <FaHtml5 className="text-orange-600" /> },
+    { name: "CSS3", icon: <FaCss3Alt className="text-blue-600" /> },
+    { name: "JavaScript", icon: <FaJs className="text-yellow-400" /> },
+    { name: "React", icon: <FaReact className="text-cyan-400" /> },
+    { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
+    { name: "Express.js", icon: <SiExpress className="text-gray-400" /> },
+    { name: "MongoDB", icon: <SiMongodb className="text-green-600" /> },
+    { name: "Tailwind", icon: <SiTailwindcss className="text-sky-400" /> },
+    { name: "Git", icon: <FaGitAlt className="text-red-500" /> },
+    { name: "Python", icon: <FaPython className="text-yellow-300" /> },
+  ];
+
+  const controlsSkills = useAnimation();
+
   useEffect(() => {
-    if (localStorage.getItem("scrollToAbout") === "1") {
-      localStorage.removeItem("scrollToAbout");
-      setTimeout(() => {
-        const el = document.getElementById("About");
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 200);
-    }
-  }, []);
+    const totalScroll = skills.length * 140; // adjust based on actual width
+
+    const startAnimation = async () => {
+      while (true) {
+        await controlsSkills.start({
+          x: `-${totalScroll}px`,
+          transition: { duration: 15, ease: "linear" },
+        });
+        controlsSkills.set({ x: "0px" });
+      }
+    };
+
+    startAnimation();
+  }, [controlsSkills]);
 
   return (
-    <div className="w-full h-screen relative overflow-hidden">
-      <CustomCursor />
-
-      {/* Hero Section - Fixed */}
-      <section
-        className="fixed top-0 left-0 h-screen w-full overflow-hidden bg-black z-10"
-        id="herosec"
+    <>
+      <Navbar />
+      {/* HERO SECTION */}
+      <div
+        id="Home"
+        className="relative w-full min-h-screen flex flex-col justify-center items-start px-4 sm:px-8 md:px-12 text-white bg-hero-gradient overflow-hidden text-left"
       >
-        <video
-          muted
-          autoPlay
-          loop
-          playsInline
-          src={backgroundVideo}
-          className="absolute top-0 left-0 h-full w-full object-cover z-0 opacity-80"
-        />
-
-        <div className="relative z-10 h-full w-full flex flex-col justify-center text-white px-6 sm:px-16 gap-4">
-          <div className="text-2xl sm:text-6xl font-medium drop-shadow-[0_0_10px_black] flex flex-col items-start leading-tight gap-1">
-            <span>I'm Harsh Vekariya, a</span>
-            <span className="text-[#ffffff] block w-full min-h-[2.5em]">
-              <Typewriter
-                options={{
-                  strings: [
-                    "Software Developer.",
-                    "Designer.",
-                    "Web Developer.",
-                  ],
-                  autoStart: true,
-                  loop: true,
-                  delay: 120,
-                  deleteSpeed: 60,
-                }}
-              />
-            </span>
-          </div>
-
-          <p className="text-sm sm:text-base sm:w-3/5 bg-black/50 p-3 sm:p-4 rounded-md leading-relaxed font-light">
-            I am Harsh Vekariya, a BSc IT student specializing in Data Science. I'm proficient in HTML, CSS, JavaScript, Tailwind CSS, Python, React, Node.js, Express.js, MongoDB, MySQL, Figma, and Adobe XD.
-          </p>
+        <CustomCursor />
+        {/* Title */}
+        <div className="w-full max-w-4xl text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold drop-shadow-[0_0_10px_black] leading-tight gap-1">
+          <span>I'm Harsh Vekariya, a</span>
+          <span className="text-[#ffffff] block w-full min-h-[1em] mt-2">
+            <Typewriter
+              options={{
+                strings: ["Software Developer.", "Designer.", "Web Developer."],
+                autoStart: true,
+                loop: true,
+                delay: 120,
+                deleteSpeed: 60,
+              }}
+            />
+          </span>
         </div>
 
-      </section>
+        {/* Subtitle */}
+        <div className="w-full max-w-2xl">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-xs xs:text-sm sm:text-base md:text-lg text-white mt-6 sm:mt-8 leading-relaxed font-light p-2 sm:p-4 rounded-md"
+          >
+            I am Harsh Vekariya, a BSc IT student specializing in Data Science. I'm
+            proficient in HTML, CSS, JavaScript, Tailwind CSS, Python, React, Node.js,
+            Express.js, MongoDB, MySQL, Figma, and Adobe XD.
+          </motion.p>
+        </div>
 
-      {/* About Section - Scrollable container */}
-      <div
-        className="absolute top-0 left-0 w-full h-screen overflow-y-scroll pt-[100vh] z-20"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-      >
-        <style>{`
-          div::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
-
-        <section id="About" className="w-full bg-gray-100 text-black rounded-t-3xl">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row min-h-screen px-4 sm:px-8 py-20 gap-12">
-            {/* Left Side: About Me */}
-            <div className="sm:w-1/2 w-full flex flex-col justify-center">
-              <div className="flex flex-col gap-6 p-2 sm:p-6">
-                <motion.h2
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-2xl font-semibold text-blue-600"
-                >
-                  About Me
-                </motion.h2>
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  className="text-base sm:text-lg text-gray-700"
-                >
-                  Hi, I'm <span className="font-bold text-black">Harsh Vekariya</span>, a BSc IT student passionate about building clean, modern digital experiences. I love working with <span className="text-black font-semibold">React.js, Tailwind, Node.js, Express.js, Python</span> and more.
-                </motion.p>
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ duration: 0.5, delay: 0.2, type: "spring", stiffness: 120 }}
-                >
-                  <Link
-                    to="/projects"
-                    className="group bg-blue-600 hover:bg-blue-700 w-fit px-5 py-2 rounded-full flex items-center gap-2 text-white text-base font-medium transition-all duration-300 shadow hover:shadow-lg"
-                  >
-                    See Projects
-                    <RiCornerUpRightLine className="text-lg group-hover:translate-x-1 transition-transform duration-300" />
-                  </Link>
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Right Side: Project Gallery */}
-            <div className="sm:w-1/2 w-full flex flex-col justify-center">
-              <p className="pb-4 font-semibold text-lg text-gray-800">
-                Some of my Projects. Hope you like it. 😊
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {[
-                  "/images/Mockup 1.png",
-                  "/images/Thumbnail - 2.png",
-                  "/images/Mockup 3.png",
-                  "/images/Mockup 4.png",
-                  "/images/Mockup 5.png",
-                  "/images/Mockup.png",
-                ].map((src, i) => (
-                  <div
-                    key={i}
-                    className="aspect-square bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 hover:border-blue-300 hover:shadow-md transition duration-300 group"
-                  >
-                    <img
-                      src={src}
-                      alt={`Project ${i + 1}`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <Footer />
-        </section>
+        {/* CTA Button */}
+        <a
+          href="https://drive.google.com/file/d/1dukz5sUdmfITQfzxsaYQ0TYiuQbbxV1A/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          download
+        >
+          <motion.button
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="mt-6 sm:mt-8 bg-white text-black px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full font-semibold hover:bg-gray-200 transition flex items-center gap-2 cursor-pointer text-sm sm:text-base"
+          >
+            Download CV
+            <span className="text-base sm:text-xl">➜</span>
+          </motion.button>
+        </a>
 
       </div>
-    </div>
+
+
+      {/* ABOUT SECTION */}
+      <div id="About" className="bg-white w-full py-16 transition-all">
+        <div className="flex flex-col md:flex-row items-stretch justify-between gap-8 px-4 md:px-16">
+
+          {/* Left side title */}
+          <div className="w-full md:w-1/2 flex items-center justify-center bg-white">
+            <h2 className="text-3xl md:text-4xl font-bold text-black text-center md:text-right">
+              About <span className="text-purple-500">Me</span>
+            </h2>
+          </div>
+
+          {/* Right side description */}
+          <div className="w-full md:w-1/2 flex items-center justify-center bg-white">
+            <p className="text-gray-700 text-base sm:text-lg leading-relaxed text-center md:text-left max-w-xl">
+              I'm <span className="font-bold text-black">Harsh Vekariya</span>, a BSc IT student focused on Data Science.&nbsp;
+              I'm skilled in <span className="font-bold">web development</span>, <span className="font-bold">programming</span>, and <span className="font-bold">UI/UX design</span>.<br /><br />
+              I'm currently learning <span className="text-purple-600 font-semibold">AI/ML</span> and use tools like
+              <span className="font-bold"> React</span>, <span className="font-bold">Node.js</span>, <span className="font-bold">Express.js</span>, <span className="font-bold">MongoDB</span>, <span className="font-bold">Tailwind</span>, <span className="font-bold">Java</span>,
+              <span className="font-bold"> Python</span>,
+              <span className="font-bold"> Adobe XD</span>, and <span className="font-bold">Figma</span>
+              to build complete digital solutions.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* SKILLS SECTION */}
+      <div className="overflow-hidden w-full bg-white py-12">
+        <h2 className="text-4xl font-bold text-center mb-8">
+          <span className="bg-black text-transparent bg-clip-text">
+            Technologies I <span className="text-purple-600">Work With</span>
+          </span>
+        </h2>
+
+        <div className="relative w-full overflow-x-auto mt-12 hide-scrollbar mt-16">
+          <motion.div
+            className="flex gap-6 sm:gap-10 min-w-max sm:min-w-full justify-start sm:justify-center"
+            animate={controlsSkills}
+            initial={{ x: 0 }}
+          >
+            {[...skills, ...skills].map((skill, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center min-w-[80px] sm:min-w-[120px] space-y-2 hover:scale-110 transition-transform duration-300"
+              >
+                <div className="text-3xl sm:text-5xl animate-spin-slow">{skill.icon}</div>
+                <p className="text-xs sm:text-sm font-semibold text-gray-700 text-center">
+                  {skill.name}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+      </div>
+
+      {/* PROJECT SHOWCASE SECTION */}
+      <div className="bg-white w-full py-16 px-4 md:px-20">
+        <div className="max-w-7xl mx-auto">
+
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10">
+            <div>
+              <span className="px-3 py-1 rounded-full border border-gray-300 text-xs sm:text-sm text-gray-800 font-semibold mb-2 inline-block">
+                🟣 Latest Projects
+              </span>
+              <h2 className="font-bold text-2xl md:text-3xl text-black leading-tight">
+                Showcasing Creativity,<br />
+                Inspiring Possibilities
+              </h2>
+            </div>
+            <Link
+              to="/portfolio"
+              className="mt-4 sm:mt-0 text-xs sm:text-sm font-semibold text-gray-700 hover:text-purple-700 transition-all uppercase tracking-wider"
+            >
+              SEE ALL PORTFOLIO <span aria-hidden>→</span>
+            </Link>
+
+          </div>
+
+          {/* Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+            {/* First Project */}
+            <div className="relative w-full aspect-[5/3] rounded-2xl overflow-hidden shadow bg-gray-100 group">
+              <img
+                src={luxiousImg}
+                alt="Luxious Project"
+                className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 cursor-pointer"
+              />
+            </div>
+
+            {/* Second Project */}
+            <div className="relative w-full aspect-[5/3] rounded-2xl overflow-hidden shadow bg-gray-100 group">
+              <img
+                src={emperhiaImg}
+                alt="Emperhia Project"
+                className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 cursor-pointer"
+              />
+            </div>
+
+            {/* Full-width third project */}
+            <div className="relative md:col-span-2 w-full aspect-[18/9] rounded-2xl overflow-hidden shadow bg-gray-100 group">
+              <img
+                src={nutritionousImg}
+                alt="Nutritionous Project"
+                className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 cursor-pointer"
+              />
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <Footer />
+
+    </>
   );
 }
+
+export default Home;

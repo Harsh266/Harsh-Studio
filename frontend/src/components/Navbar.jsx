@@ -1,207 +1,193 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { FaBehance, FaGithub, FaInstagram } from "react-icons/fa";
+import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { FaInstagram, FaBehance, FaGithub } from "react-icons/fa";
+import { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
-export default function Navbar() {
+function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const navItems = [
-    { name: "Home", link: "/" },
-    { name: "About", link: "about-section" },
-    { name: "Contact", link: "/contact" },
-    { name: "Portfolio", link: "/projects" },
+  const handleAboutClick = () => {
+    if (location.pathname === "/") {
+      const aboutSection = document.getElementById("About");
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate("/#About");
+      setTimeout(() => {
+        const aboutSection = document.getElementById("About");
+        if (aboutSection) {
+          aboutSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  };
+
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "About", onClick: handleAboutClick }, // Custom handler
+    { name: "Portfolio", path: "/portfolio" },
+    { name: "Contact", path: "/contact" },
   ];
 
+  const sidebarVariants = {
+    hidden: { x: "-100%" },
+    visible: { x: 0, transition: { type: "spring", stiffness: 80, damping: 20 } },
+    exit: { x: "-100%", transition: { duration: 0.3 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -15 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.2, duration: 0.5, ease: "easeOut" },
+    }),
+  };
+
   return (
-    <nav className="bg-white shadow sticky top-0 z-50 px-6 sm:px-8 py-2 flex items-center justify-between">
-      {/* Logo */}
-      <motion.div
-        className="text-xl font-bold tracking-tight text-black"
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        Harsh Studio
-      </motion.div>
+    <nav className="p-3 bg-black w-full z-50 top-0 left-0">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4">
+        {/* Logo */}
+        <motion.div
+          custom={0}
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+          className="text-white text-xl font-bold cursor-pointer"
+        >
+          Harsh-Studio
+        </motion.div>
 
-      {/* Desktop Nav */}
-      <motion.ul
-        className="hidden md:flex space-x-8 font-medium text-black text-sm"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        {navItems.map((item, index) => (
-          <motion.li
-            key={index}
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            {item.name === "About" ? (
-              <button
-                className="transition-colors duration-200 hover:text-black bg-transparent border-none outline-none cursor-pointer"
-                onClick={() => {
-                  if (window.location.pathname === "/") {
-                    const el = document.getElementById("About");
-                    if (el) {
-                      el.scrollIntoView({ behavior: "smooth" });
-                    }
-                  } else {
-                    localStorage.setItem("scrollToAbout", "1");
-                    window.location.href = "/";
-                  }
-                }}
-              >
-                {item.name}
-              </button>
-            ) : item.link.startsWith("/") ? (
-              <Link
-                to={item.link}
-                className="transition-colors duration-200 hover:text-black"
-              >
-                {item.name}
-              </Link>
+        {/* Desktop Nav Links */}
+        <ul className="hidden md:flex space-x-6">
+          {navLinks.map((item, i) => (
+            <motion.li
+              key={item.name}
+              custom={i + 1}
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              {item.onClick ? (
+                <button
+                  onClick={item.onClick}
+                  className="text-gray-300 hover:text-white transition-colors duration-300 relative after:content-[''] after:block after:w-0 after:h-[2px] after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+                >
+                  {item.name}
+                </button>
+              ) : (
+                <Link
+                  to={item.path}
+                  className="text-gray-300 hover:text-white transition-colors duration-300 relative after:content-[''] after:block after:w-0 after:h-[2px] after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+                >
+                  {item.name}
+                </Link>
+              )}
+            </motion.li>
+          ))}
+        </ul>
+
+        {/* Social Icons */}
+        <motion.div
+          custom={4}
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+          className="hidden md:flex items-center gap-3"
+        >
+          {[FaInstagram, FaBehance, FaGithub].map((Icon, idx) => (
+            <a key={idx} href="#" className="rounded-full bg-black p-2 hover:bg-white/10 transition">
+              <Icon className="text-white text-lg" />
+            </a>
+          ))}
+        </motion.div>
+
+        {/* Mobile Menu Toggle */}
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? (
+              <HiX className="text-white text-3xl" />
             ) : (
-              <a
-                href={item.link}
-                className="transition-colors duration-200 hover:text-black"
-              >
-                {item.name}
-              </a>
+              <HiMenuAlt3 className="text-white text-3xl" />
             )}
-          </motion.li>
-        ))}
-      </motion.ul>
+          </button>
+        </div>
+      </div>
 
-      {/* Social Icons */}
-      <motion.div
-        className="hidden md:flex items-center space-x-5 text-xl text-black"
-        initial={{ opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-      >
-        <motion.a
-          href="https://instagram.com"
-          target="_blank"
-          whileHover={{ scale: 1.2, color: "#E1306C" }}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          <FaInstagram />
-        </motion.a>
-        <motion.a
-          href="https://www.behance.net/harshvekariya2"
-          target="_blank"
-          whileHover={{ scale: 1.2, color: "#1769FF" }}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          <FaBehance />
-        </motion.a>
-        <motion.a
-          href="https://github.com/Harsh266"
-          target="_blank"
-          whileHover={{ scale: 1.2, color: "#000000" }}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          <FaGithub />
-        </motion.a>
-      </motion.div>
-
-      {/* Hamburger Menu */}
-      <button
-        className="md:hidden text-black focus:outline-none"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-      </button>
-
-      {/* Mobile Sidebar */}
+      {/* Mobile Sidebar + Blur */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ x: "-100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "-100%" }}
-            transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            className="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 flex flex-col px-8 py-16 space-y-6"
-          >
-            <ul className="space-y-4 font-medium text-black">
-              {navItems.map((item, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ scale: 1.1 }}
-                >
-                  {item.name === "About" ? (
-                    <button
-                      className="block hover:text-black transition bg-transparent border-none outline-none cursor-pointer w-full text-left"
-                      onClick={() => {
-                        setIsOpen(false);
-                        setTimeout(() => {
-                          if (window.location.pathname === "/") {
-                            const el = document.getElementById("About");
-                            if (el) {
-                              el.scrollIntoView({ behavior: "smooth" });
-                            }
-                          } else {
-                            localStorage.setItem("scrollToAbout", "1");
-                            window.location.href = "/";
-                          }
-                        }, 100);
-                      }}
-                    >
-                      {item.name}
-                    </button>
-                  ) : item.link.startsWith("/") ? (
-                    <Link
-                      to={item.link}
-                      className="block hover:text-black transition"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ) : (
-                    <a
-                      href={item.link}
-                      className="block hover:text-black transition"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.name}
-                    </a>
-                  )}
-                </motion.li>
-              ))}
-            </ul>
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/30 backdrop-blur-sm z-30"
+              onClick={() => setIsOpen(false)}
+            />
 
-            <div className="flex gap-6 mt-6 text-2xl text-black">
-              <motion.a
-                href="https://instagram.com"
-                target="_blank"
-                whileHover={{ scale: 1.2, color: "#E1306C" }}
-              >
-                <FaInstagram />
-              </motion.a>
-              <motion.a
-                href="https://www.behance.net/harshvekariya2"
-                target="_blank"
-                whileHover={{ scale: 1.2, color: "#1769FF" }}
-              >
-                <FaBehance />
-              </motion.a>
-              <motion.a
-                href="https://github.com/Harsh266"
-                target="_blank"
-                whileHover={{ scale: 1.2, color: "#000000" }}
-              >
-                <FaGithub />
-              </motion.a>
-            </div>
-          </motion.div>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={sidebarVariants}
+              className="fixed top-0 left-0 w-64 h-full bg-black/20 flex flex-col p-6 z-40"
+            >
+              <ul className="flex flex-col space-y-6 mt-12">
+                {navLinks.map((item, i) => (
+                  <motion.li
+                    key={item.name}
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.1 * i }}
+                  >
+                    {item.onClick ? (
+                      <button
+                        onClick={() => {
+                          item.onClick();
+                          setIsOpen(false);
+                        }}
+                        className="text-gray-200 text-lg hover:text-white transition-colors duration-300"
+                      >
+                        {item.name}
+                      </button>
+                    ) : (
+                      <Link
+                        to={item.path}
+                        onClick={() => setIsOpen(false)}
+                        className="text-gray-200 text-lg hover:text-white transition-colors duration-300"
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </motion.li>
+                ))}
+              </ul>
+
+              {/* Sidebar Socials */}
+              <div className="mt-10">
+                <div className="flex gap-4 mb-4">
+                  {[FaInstagram, FaBehance, FaGithub].map((Icon, idx) => (
+                    <a
+                      key={idx}
+                      href="#"
+                      className="rounded-full bg-white p-2 hover:bg-gray-300 transition"
+                    >
+                      <Icon className="text-black text-lg" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
   );
 }
+
+export default Navbar;

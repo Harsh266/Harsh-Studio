@@ -1,128 +1,155 @@
-import { FaInstagram, FaGithub, FaBehance } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { FaBehance, FaGithub, FaInstagram } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
-const Footer = () => {
+function Footer() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleAboutClick = useCallback(() => {
+    if (location.pathname === "/") {
+      const aboutSection = document.getElementById("About");
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        const aboutSection = document.getElementById("About");
+        if (aboutSection) {
+          aboutSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    }
+  }, [location, navigate]);
+
   return (
-    <footer className="bg-white text-black py-12 px-6 ">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-12">
-        {/* Left Section */}
-        <div className="space-y-4">
-          <motion.h2
-            className="text-2xl font-bold inline-block transition-colors duration-300 hover:text-blue-600 cursor-pointer"
-            whileHover={{ scale: 1.08, x: 8, color: '#2563eb' }}
-            transition={{ duration: 0.25, type: 'spring', stiffness: 300 }}
-          >
-            Let's talk together
-          </motion.h2>
-          <h3 className="font-bold text-xl">Harsh Studios</h3>
-          <p className="text-sm text-gray-600">
-            "The storm is easiest to fight when it's still far on the horizon. Prepare before it arrives, not after it hits."
-          </p>
+    <div className="w-full flex flex-col">
+      {/* Gradient Background */}
+      <div
+        className="h-72 w-full"
+        style={{
+          background: `linear-gradient(
+            to top,
+            #000000 0%,
+            #29223a 25%,
+            #7c5ecb 60%,
+            #e0e6f5 85%,
+            #ffffff 100%
+          )`,
+        }}
+      />
+
+      {/* Footer Content */}
+      <div className="w-full px-6 md:px-14 py-16 text-white bg-black">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10 max-w-7xl mx-auto">
+          <div className="max-w-2xl">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
+              Elevate Your Presence
+              <br />
+              With My Portfolio
+            </h1>
+            <p className="text-gray-400 md:text-lg font-light">
+              Discover my projects, skills, and experiences that shape my creative journey.
+            </p>
+          </div>
         </div>
 
-        {/* Center Section */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold">Pagination</h3>
-          <ul className="space-y-2 text-gray-600">
-            <motion.li
-              whileHover={{ scale: 1.13, x: 10, color: '#2563eb' }}
-              transition={{ duration: 0.18, type: 'spring', stiffness: 350 }}
-            >
-              <Link to="/" className="hover:text-blue-600 font-medium transition-colors duration-200">Home</Link>
-            </motion.li>
-            <motion.li
-              whileHover={{ scale: 1.13, x: 10, color: '#2563eb' }}
-              transition={{ duration: 0.18, type: 'spring', stiffness: 350 }}
-            >
-              <button
-                className="hover:text-blue-600 font-medium transition-colors duration-200 bg-transparent border-none outline-none cursor-pointer"
-                onClick={() => {
-                  if (window.location.pathname === "/") {
-                    const el = document.getElementById("About");
-                    if (el) {
-                      el.scrollIntoView({ behavior: "smooth" });
-                    }
-                  } else {
-                    localStorage.setItem("scrollToAbout", "1");
-                    window.location.href = "/";
-                  }
-                }}
-              >
-                About me
-              </button>
-            </motion.li>
-            <motion.li
-              whileHover={{ scale: 1.13, x: 10, color: '#2563eb' }}
-              transition={{ duration: 0.18, type: 'spring', stiffness: 350 }}
-            >
-              <Link to="/projects" className="hover:text-blue-600 font-medium transition-colors duration-200">Projects</Link>
-            </motion.li>
-            <motion.li
-              whileHover={{ scale: 1.13, x: 10, color: '#2563eb' }}
-              transition={{ duration: 0.18, type: 'spring', stiffness: 350 }}
-            >
-              <Link to="/contact" className="hover:text-blue-600 font-medium transition-colors duration-200">Contact me</Link>
-            </motion.li>
-          </ul>
-        </div>
+        {/* Footer Main */}
+        <footer className="mt-16 w-full max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:justify-between gap-12">
+            {/* Left Side */}
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <span className="bg-white rounded-full p-2">
+                  <svg width="20" height="20">
+                    <text
+                      x="4.0"
+                      y="17"
+                      fontSize="18"
+                      fill="black"
+                      fontFamily="Arial"
+                      fontWeight="bold"
+                    >
+                      H
+                    </text>
+                  </svg>
+                </span>
+                <span className="font-semibold text-lg">Harsh-Studio</span>
+              </div>
+              <p className="text-sm text-gray-400 mb-4">
+                MERN Stack Developer | Passionate about modern UI/UX & scalable apps
+              </p>
+              <div className="flex gap-3">
+                <a href="#" className="rounded-full bg-white hover:bg-gray-200 p-2 transition">
+                  <FaInstagram className="text-black" />
+                </a>
+                <a href="#" className="rounded-full bg-white hover:bg-gray-200 p-2 transition">
+                  <FaBehance className="text-black" />
+                </a>
+                <a href="#" className="rounded-full bg-white hover:bg-gray-200 p-2 transition">
+                  <FaGithub className="text-black" />
+                </a>
+              </div>
+            </div>
 
-        {/* Right Section */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold">Socials</h3>
-          <ul className="space-y-3 text-gray-600">
-            <motion.li
-              whileHover={{ scale: 1.15, x: 12, color: '#e1306c' }}
-              transition={{ duration: 0.18, type: 'spring', stiffness: 350 }}
-              className="flex items-center gap-3 cursor-pointer"
-            >
-              <a
-                href="https://instagram.com/your_username"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 hover:text-pink-600 transition-colors duration-200"
-              >
-                <FaInstagram size={20} /> Instagram
-              </a>
-            </motion.li>
-            <motion.li
-              whileHover={{ scale: 1.15, x: 12, color: '#1769ff' }}
-              transition={{ duration: 0.18, type: 'spring', stiffness: 350 }}
-              className="flex items-center gap-3 cursor-pointer"
-            >
-              <a
-                href="https://www.behance.net/harshvekariya2"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 hover:text-blue-600 transition-colors duration-200"
-              >
-                <FaBehance size={20} /> Behance
-              </a>
-            </motion.li>
-            <motion.li
-              whileHover={{ scale: 1.15, x: 12, color: '#24292f' }}
-              transition={{ duration: 0.18, type: 'spring', stiffness: 350 }}
-              className="flex items-center gap-3 cursor-pointer"
-            >
-              <a
-                href="https://github.com/Harsh266"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 hover:text-gray-800 transition-colors duration-200"
-              >
-                <FaGithub size={20} /> GitHub
-              </a>
-            </motion.li>
-          </ul>
-        </div>
+            {/* Right Side Links */}
+            <div className="flex flex-wrap gap-14 text-sm md:justify-end">
+              <div>
+                <h4 className="font-bold mb-2 text-white">Navigation</h4>
+                <ul className="space-y-1 text-gray-400">
+                  <li>
+                    <Link
+                      to="/"
+                      onClick={scrollToTop}
+                      className="hover:text-white transition"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleAboutClick}
+                      className="hover:text-white transition bg-transparent p-0 m-0"
+                    >
+                      About
+                    </button>
+                  </li>
+                  <li>
+                    <Link
+                      to="/portfolio"
+                      onClick={scrollToTop}
+                      className="hover:text-white transition"
+                    >
+                      Portfolio
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/contact"
+                      onClick={scrollToTop}
+                      className="hover:text-white transition"
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Line */}
+          <div className="flex flex-col md:flex-row md:justify-between items-center border-t border-zinc-700 pt-6 mt-10 text-xs text-gray-500">
+            <p>© 2025 Harsh Vekariya. All rights reserved.</p>
+          </div>
+        </footer>
       </div>
-
-      {/* Bottom Copyright */}
-      <div className="mt-12 text-center text-xs text-gray-500">
-        © 2025 Harsh Vekariya. All rights reserved.
-      </div>
-    </footer>
+    </div>
   );
-};
+}
 
 export default Footer;

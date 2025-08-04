@@ -1,20 +1,17 @@
 @import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
+.bg-hero-gradient {
+  background: linear-gradient(
+    to bottom,
+    #000000 0%,       /* black, top */
+    #29223a 25%,      /* dark purple */
+    #7c5ecb 60%,      /* muted purple */
+    #e0e6f5 85%,      /* very light, almost white purple */
+    #ffffff 100%      /* white, bottom */
+  );
 }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none; /* IE/Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-.hide-scrollbar::-webkit-scrollbar { display: none; }
-.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
+/* Hide scrollbar but allow scroll */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -23,11 +20,29 @@ html {
   scrollbar-width: none;     /* Firefox */
 }
 
-.custom-scroll::-webkit-scrollbar {
-  display: none;
+@keyframes spinSlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.custom-scroll {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+.spin-slow {
+  animation: spinSlow 6s linear infinite;
 }
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
