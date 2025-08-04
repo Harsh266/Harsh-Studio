@@ -49,6 +49,10 @@ function Home() {
     startAnimation();
   }, [controlsSkills]);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
       <Navbar />
@@ -183,6 +187,7 @@ function Home() {
             </div>
             <Link
               to="/portfolio"
+              onClick={scrollToTop}
               className="mt-4 sm:mt-0 text-xs sm:text-sm font-semibold text-gray-700 hover:text-purple-700 transition-all uppercase tracking-wider"
             >
               SEE ALL PORTFOLIO <span aria-hidden>→</span>
