@@ -129,24 +129,6 @@ function Portfolio() {
       <Navbar />
       <div className="w-full min-h-screen flex flex-col justify-center items-start px-4 sm:px-8 md:px-12 text-white bg-hero-gradient overflow-hidden">
         <CustomCursor />
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="max-w-4xl"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight text-white drop-shadow-[0_0_8px_rgba(0,0,0,0.3)] mb-10">
-            Real Projects,<br />
-            Thoughtful Design,<br />
-            Impactful Solutions.
-          </h2>
-          <p className="mt-4 text-sm sm:text-base text-gray-300 max-w-2xl">
-            Explore a curated selection of my work—crafted with creativity, built with modern technologies, and designed to solve real-world problems. Each project reflects my commitment to innovation, detail, and user-focused experiences.
-          </p>
-        </motion.div>
-      </div>
-
-      <div className="px-6 md:px-20 py-12 bg-white min-h-[55vh] relative z-0">
         <h2 className="text-3xl font-semibold mb-8 text-black">Featured Projects</h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 cursor-pointer">
@@ -217,9 +199,9 @@ function Portfolio() {
         )}
 
         {/* Skills Section */}
-        <div className="overflow-hidden w-full bg-white py-12 mt-12">
+        <div className="overflow-hidden w-full py-12 mt-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8">
-            <span className="bg-black text-transparent bg-clip-text">My Skills</span>
+            <span className="bg-white text-transparent bg-clip-text">My Skills</span>
           </h2>
           <div className="relative w-full overflow-hidden px-4">
             <motion.div
@@ -243,7 +225,7 @@ function Portfolio() {
         </div>
 
         {/* Tools Section */}
-        <div className="overflow-hidden w-full bg-white py-12">
+        <div className="overflow-hidden w-full py-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8">
             <span className="bg-purple-500 text-transparent bg-clip-text">
               Tools I Use
