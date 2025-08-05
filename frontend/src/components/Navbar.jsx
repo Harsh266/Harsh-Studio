@@ -146,7 +146,7 @@ function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/30 backdrop-blur-sm z-30"
+              className="fixed inset-0 z-30"
               onClick={() => setIsOpen(false)}
             />
 
@@ -155,7 +155,7 @@ function Navbar() {
               animate="visible"
               exit="exit"
               variants={sidebarVariants}
-              className="fixed top-0 left-0 w-64 h-full bg-black/20 flex flex-col p-6 z-40"
+              className="fixed top-0 left-0 w-70 h-full bg-black flex flex-col p-6 z-40"
             >
               <ul className="flex flex-col space-y-6 mt-12">
                 {navLinks.map((item, i) => (
