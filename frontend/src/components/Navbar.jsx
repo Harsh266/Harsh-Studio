@@ -49,8 +49,8 @@ function Navbar() {
   };
 
   return (
-    <nav className="p-3 bg-black w-full z-50 top-0 left-0">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-4">
+    <nav className="py-5 bg-black w-full z-50 top-0 left-0">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
         {/* Logo */}
         <motion.div
           custom={0}
