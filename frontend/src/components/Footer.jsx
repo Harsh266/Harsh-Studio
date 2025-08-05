@@ -85,15 +85,31 @@ function Footer() {
                 MERN Stack Developer | Passionate about modern UI/UX & scalable apps
               </p>
               <div className="flex gap-3">
-                <a href="#" className="rounded-full bg-white hover:bg-gray-200 p-2 transition">
-                  <FaInstagram className="text-black" />
+                <a
+                  href="https://www.instagram.com/harsh_vekariya_24"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-white hover:bg-gray-200 p-2 transition"
+                >
+                  <FaInstagram className="text-black text-lg" />
                 </a>
-                <a href="#" className="rounded-full bg-white hover:bg-gray-200 p-2 transition">
-                  <FaBehance className="text-black" />
+                <a
+                  href="https://www.behance.net/harshvekariya2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-white hover:bg-gray-200 p-2 transition"
+                >
+                  <FaBehance className="text-black text-lg" />
                 </a>
-                <a href="#" className="rounded-full bg-white hover:bg-gray-200 p-2 transition">
-                  <FaGithub className="text-black" />
+                <a
+                  href="https://github.com/Harsh266"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-white hover:bg-gray-200 p-2 transition"
+                >
+                  <FaGithub className="text-black text-lg" />
                 </a>
+
               </div>
             </div>
 

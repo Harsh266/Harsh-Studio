@@ -99,12 +99,32 @@ function Navbar() {
           animate="visible"
           className="hidden md:flex items-center gap-3"
         >
-          {[FaInstagram, FaBehance, FaGithub].map((Icon, idx) => (
-            <a key={idx} href="#" className="rounded-full bg-black p-2 hover:bg-white/10 transition">
-              <Icon className="text-white text-lg" />
-            </a>
-          ))}
+          <a
+            href="https://www.instagram.com/harsh_vekariya_24"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-black p-2 hover:bg-white/10 transition"
+          >
+            <FaInstagram className="text-white text-lg" />
+          </a>
+          <a
+            href="https://www.behance.net/harshvekariya2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-black p-2 hover:bg-white/10 transition"
+          >
+            <FaBehance className="text-white text-lg" />
+          </a>
+          <a
+            href="https://github.com/Harsh266"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-black p-2 hover:bg-white/10 transition"
+          >
+            <FaGithub className="text-white text-lg" />
+          </a>
         </motion.div>
+
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
@@ -171,17 +191,33 @@ function Navbar() {
               {/* Sidebar Socials */}
               <div className="mt-10">
                 <div className="flex gap-4 mb-4">
-                  {[FaInstagram, FaBehance, FaGithub].map((Icon, idx) => (
-                    <a
-                      key={idx}
-                      href="#"
-                      className="rounded-full bg-white p-2 hover:bg-gray-300 transition"
-                    >
-                      <Icon className="text-black text-lg" />
-                    </a>
-                  ))}
+                  <a
+                    href="https://www.instagram.com/harsh_vekariya_24"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-white p-2 hover:bg-gray-300 transition"
+                  >
+                    <FaInstagram className="text-black text-lg" />
+                  </a>
+                  <a
+                    href="https://www.behance.net/harshvekariya2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-white p-2 hover:bg-gray-300 transition"
+                  >
+                    <FaBehance className="text-black text-lg" />
+                  </a>
+                  <a
+                    href="https://github.com/Harsh266"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-white p-2 hover:bg-gray-300 transition"
+                  >
+                    <FaGithub className="text-black text-lg" />
+                  </a>
                 </div>
               </div>
+
             </motion.div>
           </>
         )}
