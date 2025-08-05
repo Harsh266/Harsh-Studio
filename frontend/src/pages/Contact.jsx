@@ -3,19 +3,28 @@ import Footer from "../components/Footer";
 import CustomCursor from "../components/CustomCursor";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { TbArrowBigUpLines } from "react-icons/tb";
+import { db } from "../firebase";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { Toaster, toast } from "react-hot-toast";
 
 function Contact() {
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
-  const [showScrollTop, setShowScrollTop] = React.useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
+
+  const handleScroll = () => {
+    setShowScrollTop(window.scrollY > 300);
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300); // show button after 300px
-    };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -24,65 +33,96 @@ function Contact() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await addDoc(collection(db, "messages"), {
+        ...formData,
+        createdAt: Timestamp.now(),
+      });
+      toast.success("Message sent successfully!");
+      setFormData({ firstName: "", lastName: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast.error("Failed to send message.");
+    }
+  };
+
   return (
     <>
       <Navbar />
+      <Toaster position="top-center" reverseOrder={false} />
 
       {/* Hero Section */}
-      <div
-        className="relative w-full min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 md:px-12 text-white bg-hero-gradient text-center overflow-hidden"
-      >
+      <div className="relative w-full min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 md:px-12 text-white bg-hero-gradient text-center overflow-hidden">
         <CustomCursor />
         <div className="px-6 md:px-40 py-12 text-black">
-        <div className="max-w-2xl mx-auto">
-          {/* Heading */}
-          <h2 className="text-3xl text-white font-semibold mb-2 text-center">Chat with Us</h2>
-          <p className="text-sm text-gray-200 text-center mb-8">
-            Get Instant Support – Chat with me for Quick Assistance and Expert Guidance Anytime!
-          </p>
-
-          {/* Form */}
-          <form className="rounded-md">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <input
-                type="text"
-                placeholder="First name *"
-                className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-              <input
-                type="text"
-                placeholder="Last name *"
-                className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-            <input
-              type="email"
-              placeholder="Email *"
-              className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-            <textarea
-              rows="4"
-              placeholder="Message here..."
-              className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            ></textarea>
-            <button
-              type="submit"
-              className="w-full bg-purple-600 hover:bg-purplele-600 hover:bg-purple-700 text-white py-3 rounded-full font-medium transition duration-300 cursor-pointer"
-            >
-              Sent to Us
-            </button>
-            <p className="text-xs text-center text-gray-600 mt-4">
-              By Contacting us, you agree to our{" "}
-              <span>Terms</span> of service
-              and{" "}
-              <span>privacy Policy</span>.
+          <div className="max-w-2xl mx-auto">
+            {/* Heading */}
+            <h2 className="text-3xl text-white font-semibold mb-2 text-center">
+              Chat with Us
+            </h2>
+            <p className="text-sm text-gray-200 text-center mb-8">
+              Get Instant Support – Chat with me for Quick Assistance and Expert Guidance Anytime!
             </p>
-          </form>
+
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="rounded-md">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <input
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  placeholder="First name *"
+                  className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  placeholder="Last name *"
+                  className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email *"
+                className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+              <textarea
+                rows="4"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Message here..."
+                className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              ></textarea>
+              <button
+                type="submit"
+                className="w-full bg-purple-600 hover:bg-purplele-600 hover:bg-purple-700 text-white py-3 rounded-full font-medium transition duration-300 cursor-pointer"
+              >
+                Sent to Us
+              </button>
+              <p className="text-xs text-center text-gray-600 mt-4">
+                By Contacting us, you agree to our{" "}
+                <span>Terms</span> of service and <span>privacy Policy</span>.
+              </p>
+            </form>
+          </div>
         </div>
-      </div>
       </div>
 
       <Footer />
@@ -105,7 +145,6 @@ function Contact() {
           </motion.span>
         </motion.button>
       )}
-
     </>
   );
 }
