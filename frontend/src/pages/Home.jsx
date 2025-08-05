@@ -76,7 +76,7 @@ function Home() {
       >
         <CustomCursor />
         {/* Title */}
-        <div className="w-full max-w-4xl text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold drop-shadow-[0_0_10px_black] leading-tight gap-1">
+        <div className="w-full max-w-4xl text-4xl xs:text-5xl sm:text-9xl md:text-6xl lg:text-7xl font-semibold drop-shadow-[0_0_10px_black] leading-tight gap-1">
           <span>I'm Harsh Vekariya, a</span>
           <span className="text-[#ffffff] block w-full min-h-[1em] mt-2">
             <Typewriter
@@ -97,7 +97,7 @@ function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-xs xs:text-sm sm:text-base md:text-lg text-white mt-6 sm:mt-8 leading-relaxed font-light p-2 sm:p-4 rounded-md"
+            className="text-md xs:text-md sm:text-lg md:text-lg text-white mt-6 sm:mt-8 leading-relaxed font-light p-2 sm:p-4 rounded-md"
           >
             I am Harsh Vekariya, a BSc IT student specializing in Data Science. I'm
             proficient in HTML, CSS, JavaScript, Tailwind CSS, Python, React, Node.js,
@@ -139,7 +139,7 @@ function Home() {
 
           {/* Right side description */}
           <div className="w-full md:w-1/2 flex items-center justify-center bg-white">
-            <p className="text-gray-700 text-base sm:text-lg leading-relaxed text-center md:text-left max-w-xl">
+            <p className="text-gray-700 text-base sm:text-lg leading-relaxed text-left md:text-left max-w-xl">
               I'm <span className="font-bold text-black">Harsh Vekariya</span>, a BSc IT student focused on Data Science.&nbsp;
               I'm skilled in <span className="font-bold">web development</span>, <span className="font-bold">programming</span>, and <span className="font-bold">UI/UX design</span>.<br /><br />
               I'm currently learning <span className="text-purple-600 font-semibold">AI/ML</span> and use tools like
