@@ -76,9 +76,14 @@ function Navbar() {
           variants={itemVariants}
           initial="hidden"
           animate="visible"
-          className="text-white text-xl font-bold cursor-pointer"
+          className="flex flex-col items-center cursor-pointer"
         >
-          Harsh-Studio
+          <span className="text-sm md:text-1xl font-semibold text-white tracking-widest">
+            HARSH
+          </span>
+          <p className="text-xs md:text-xs font-light tracking-widest text-white">
+            STUDIO
+          </p>
         </motion.div>
 
         {/* Desktop Nav Links */}
@@ -97,7 +102,6 @@ function Navbar() {
                   className={`text-gray-300 hover:text-white transition-colors duration-300 relative
 after:content-[''] after:block after:h-[2px] after:bg-white after:transition-all after:duration-300
 ${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white' : 'after:w-0 hover:after:w-full'}`}
-
                 >
                   {item.name}
                 </button>
@@ -107,7 +111,6 @@ ${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white'
                   className={`text-gray-300 hover:text-white transition-colors duration-300 relative
 after:content-[''] after:block after:h-[2px] after:bg-white after:transition-all after:duration-300
 ${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white' : 'after:w-0 hover:after:w-full'}`}
-
                 >
                   {item.name}
                 </Link>
@@ -115,8 +118,6 @@ ${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white'
             </motion.li>
           ))}
         </ul>
-
-
         {/* Social Icons */}
         <motion.div
           custom={4}

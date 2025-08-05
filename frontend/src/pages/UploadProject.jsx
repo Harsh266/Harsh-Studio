@@ -2,14 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { db, auth } from "../firebase";
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import {
-  collection,
-  addDoc,
-  getDocs,
-  updateDoc,
-  deleteDoc,
-  doc
-} from "firebase/firestore";
+import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "firebase/firestore";
 
 function UploadProject() {
   const [formData, setFormData] = useState({

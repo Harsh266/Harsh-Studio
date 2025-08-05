@@ -4,26 +4,8 @@ import CustomCursor from "../components/CustomCursor";
 import React from "react";
 import { TbArrowBigUpLines } from "react-icons/tb";
 import { motion, useAnimation } from "framer-motion";
-import {
-  FaExternalLinkAlt,
-  FaGithub,
-  FaFigma,
-  FaHtml5,
-  FaCss3Alt,
-  FaJs,
-  FaReact,
-  FaNodeJs,
-  FaPython,
-  FaDatabase,
-} from "react-icons/fa";
-import {
-  SiTailwindcss,
-  SiExpress,
-  SiMongodb,
-  SiMysql,
-  SiAdobexd,
-  SiPostman,
-} from "react-icons/si";
+import { FaExternalLinkAlt, FaGithub, FaFigma, FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPython } from "react-icons/fa";
+import { SiTailwindcss, SiExpress, SiMongodb, SiMysql, SiAdobexd, SiPostman } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 import { useState, useEffect } from "react";
 
@@ -91,7 +73,7 @@ function Portfolio() {
     };
 
     startAnimation();
-  }, [controlsSkills]);
+  }, [controlsSkills, skills.length]);
 
   useEffect(() => {
     const totalScroll = tools.length * 140;
@@ -110,17 +92,17 @@ function Portfolio() {
   }, [controlsTools, tools.length]);
 
   const [showScrollTop, setShowScrollTop] = React.useState(false);
-  
-    useEffect(() => {
-      const handleScroll = () => {
-        setShowScrollTop(window.scrollY > 300); // show button after 300px
-      };
-  
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
-    const scrollToTop = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300); // show button after 300px
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -136,7 +118,7 @@ function Portfolio() {
             <motion.div
               key={project.id}
               whileHover={{ scale: 1.04, y: -6 }}
-              className="bg-white rounded-2xl shadow-md ring-1 ring-black/10 transition duration-300 group flex flex-col overflow-hidden"
+              className="bg-transparent backdrop-blur-md rounded-2xl shadow-md ring-1 ring-black/10 transition duration-300 group flex flex-col overflow-hidden"
             >
               <div className="aspect-[14/9] w-full overflow-hidden">
                 <img
@@ -145,11 +127,11 @@ function Portfolio() {
                   className="object-cover w-full h-full transition"
                 />
               </div>
-              <div className="bg-white px-5 py-4 rounded-b-2xl shadow-inner flex flex-col gap-2">
-                <h3 className="text-black text-lg font-semibold truncate">{project.name}</h3>
+              <div className="bg-transparent backdrop-blur-md px-5 py-4 rounded-b-2xl shadow-inner flex flex-col gap-2">
+                <h3 className="text-white text-lg font-semibold truncate">{project.name}</h3>
                 <button
                   onClick={() => setSelectedProject(project)}
-                  className="text-sm font-medium text-violet-600 hover:text-violet-800 flex items-center gap-1 transition cursor-pointer"
+                  className="text-sm font-medium text-white flex items-center gap-1 transition cursor-pointer"
                 >
                   View Project <FaExternalLinkAlt className="ml-1 text-xs" />
                 </button>
@@ -254,25 +236,25 @@ function Portfolio() {
       </div>
       <Footer />
       {showScrollTop && (
-              <motion.button
-                onClick={scrollToTop}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 50 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="fixed bottom-6 right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 hover:bg-purple-700 text-white text-2xl sm:text-3xl rounded-full shadow-xl flex items-center justify-center transition-all"
-                whileHover={{ scale: 1.15, rotate: 5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <motion.span
-                  animate={{ y: [0, -4, 0] }}
-                  transition={{ repeat: Infinity, duration: 1 }}
-                >
-                  <TbArrowBigUpLines   />
-                </motion.span>
-              </motion.button>
-            )}
-      
+        <motion.button
+          onClick={scrollToTop}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 50 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="fixed bottom-6 right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 hover:bg-purple-700 text-white text-2xl sm:text-3xl rounded-full shadow-xl flex items-center justify-center transition-all"
+          whileHover={{ scale: 1.15, rotate: 5 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <motion.span
+            animate={{ y: [0, -4, 0] }}
+            transition={{ repeat: Infinity, duration: 1 }}
+          >
+            <TbArrowBigUpLines />
+          </motion.span>
+        </motion.button>
+      )}
+
     </>
   );
 }
