@@ -129,7 +129,7 @@ function Portfolio() {
       <Navbar />
       <div className="w-full min-h-screen flex flex-col justify-center items-start px-4 sm:px-8 md:px-12 text-white bg-hero-gradient overflow-hidden">
         <CustomCursor />
-        <h2 className="text-3xl font-semibold mb-8 text-black">Featured Projects</h2>
+        <h2 className="text-3xl font-semibold mt-8 mb-16 text-white">Featured Projects</h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 cursor-pointer">
           {projects.map((project) => (
