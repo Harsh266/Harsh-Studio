@@ -130,7 +130,7 @@ ${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white'
             href="https://www.instagram.com/harsh_vekariya_24"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-black p-2 hover:bg-white/10 transition"
+            className="rounded-full bg-black p-2 transition hover:scale-115"
           >
             <FaInstagram className="text-white text-lg" />
           </a>
@@ -138,7 +138,7 @@ ${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white'
             href="https://www.behance.net/harshvekariya2"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-black p-2 hover:bg-white/10 transition"
+            className="rounded-full bg-black p-2 hover:scale-115 transition"
           >
             <FaBehance className="text-white text-lg" />
           </a>
@@ -146,7 +146,7 @@ ${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white'
             href="https://github.com/Harsh266"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-black p-2 hover:bg-white/10 transition"
+            className="rounded-full bg-black p-2 hover:scale-115 transition"
           >
             <FaGithub className="text-white text-lg" />
           </a>

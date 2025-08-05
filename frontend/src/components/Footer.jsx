@@ -79,7 +79,14 @@ function Footer() {
                     </text>
                   </svg>
                 </span>
-                <span className="font-semibold text-lg">Harsh-Studio</span>
+                <div className="flex flex-col">
+                  <span className="text-sm md:text-1xl font-semibold text-white tracking-widest">
+                    HARSH
+                  </span>
+                  <p className="text-xs md:text-xs font-light tracking-widest text-white">
+                    STUDIO
+                  </p>
+                </div>
               </div>
               <p className="text-sm text-gray-400 mb-4">
                 MERN Stack Developer | Passionate about modern UI/UX & scalable apps
@@ -89,25 +96,25 @@ function Footer() {
                   href="https://www.instagram.com/harsh_vekariya_24"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-white hover:bg-gray-200 p-2 transition"
+                  className="rounded-full bg-white hover:bg-gray-200  p-2 transition hover:scale-115"
                 >
-                  <FaInstagram className="text-black text-lg" />
+                  <FaInstagram className="text-black text-lg hover:scale-115" />
                 </a>
                 <a
                   href="https://www.behance.net/harshvekariya2"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-white hover:bg-gray-200 p-2 transition"
+                  className="rounded-full bg-white hover:bg-gray-200 p-2 transition hover:scale-115"
                 >
-                  <FaBehance className="text-black text-lg" />
+                  <FaBehance className="text-black text-lg hover:scale-115" />
                 </a>
                 <a
                   href="https://github.com/Harsh266"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-white hover:bg-gray-200 p-2 transition"
+                  className="rounded-full bg-white hover:bg-gray-200 p-2 transition hover:scale-115"
                 >
-                  <FaGithub className="text-black text-lg" />
+                  <FaGithub className="text-black text-lg hover:scale-115" />
                 </a>
 
               </div>
@@ -118,7 +125,7 @@ function Footer() {
               <div>
                 <h4 className="font-bold mb-2 text-white">Navigation</h4>
                 <ul className="space-y-1 text-gray-400">
-                  <li>
+                  <li className="hover:scale-115 transition duration-300">
                     <Link
                       to="/"
                       onClick={scrollToTop}
@@ -127,7 +134,7 @@ function Footer() {
                       Home
                     </Link>
                   </li>
-                  <li>
+                  <li className="hover:scale-115 transition duration-300">
                     <button
                       onClick={handleAboutClick}
                       className="hover:text-white transition bg-transparent p-0 m-0"
@@ -135,7 +142,7 @@ function Footer() {
                       About
                     </button>
                   </li>
-                  <li>
+                  <li className="hover:scale-115 transition duration-300">
                     <Link
                       to="/portfolio"
                       onClick={scrollToTop}
@@ -144,7 +151,7 @@ function Footer() {
                       Portfolio
                     </Link>
                   </li>
-                  <li>
+                  <li className="hover:scale-115 transition duration-300">
                     <Link
                       to="/contact"
                       onClick={scrollToTop}

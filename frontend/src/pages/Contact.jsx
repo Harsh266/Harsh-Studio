@@ -11,6 +11,26 @@ import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { Toaster, toast } from "react-hot-toast";
 
 function Contact() {
+
+  // Animation Variants
+const containerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -60,70 +80,95 @@ function Contact() {
 
       {/* Hero Section */}
       <div className="relative w-full min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 md:px-12 text-white bg-hero-gradient text-center overflow-hidden">
-        <CustomCursor />
-        <div className="px-6 md:px-40 py-12 text-black">
-          <div className="max-w-2xl mx-auto">
-            {/* Heading */}
-            <h2 className="text-3xl text-white font-semibold mb-2 text-center">
-              Chat with Us
-            </h2>
-            <p className="text-sm text-gray-200 text-center mb-8">
-              Get Instant Support – Chat with me for Quick Assistance and Expert Guidance Anytime!
-            </p>
+  <CustomCursor />
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="rounded-md">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  placeholder="First name *"
-                  className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  placeholder="Last name *"
-                  className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-              </div>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email *"
-                className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-              <textarea
-                rows="4"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Message here..."
-                className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              ></textarea>
-              <button
-                type="submit"
-                className="w-full bg-purple-600 hover:bg-purplele-600 hover:bg-purple-700 text-white py-3 rounded-full font-medium transition duration-300 cursor-pointer"
-              >
-                Sent to Us
-              </button>
-              <p className="text-xs text-center text-gray-600 mt-4">
-                By Contacting us, you agree to our{" "}
-                <span>Terms</span> of service and <span>privacy Policy</span>.
-              </p>
-            </form>
-          </div>
+  <motion.div
+    variants={containerVariants}
+    initial="hidden"
+    animate="visible"
+    className="px-6 md:px-40 py-12 text-black"
+  >
+    <motion.div variants={itemVariants} className="max-w-2xl mx-auto">
+      {/* Heading */}
+      <motion.h2
+        variants={itemVariants}
+        className="text-3xl text-white font-semibold mb-2 text-center"
+      >
+        Chat with Us
+      </motion.h2>
+      <motion.p
+        variants={itemVariants}
+        className="text-sm text-gray-200 text-center mb-8"
+      >
+        Get Instant Support – Chat with me for Quick Assistance and Expert Guidance Anytime!
+      </motion.p>
+
+      {/* Form */}
+      <motion.form
+        onSubmit={handleSubmit}
+        variants={itemVariants}
+        className="rounded-md"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <motion.input
+            variants={itemVariants}
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            placeholder="First name *"
+            className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+          <motion.input
+            variants={itemVariants}
+            type="text"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            placeholder="Last name *"
+            className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
         </div>
-      </div>
+        <motion.input
+          variants={itemVariants}
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Email *"
+          className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+        <motion.textarea
+          variants={itemVariants}
+          rows="4"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="Message here..."
+          className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        ></motion.textarea>
+        <motion.button
+          variants={itemVariants}
+          type="submit"
+          className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-full font-medium transition duration-300 cursor-pointer"
+        >
+          Sent to Us
+        </motion.button>
+        <motion.p
+          variants={itemVariants}
+          className="text-xs text-center text-gray-600 mt-4"
+        >
+          By Contacting us, you agree to our{" "}
+          <span>Terms</span> of service and <span>privacy Policy</span>.
+        </motion.p>
+      </motion.form>
+    </motion.div>
+  </motion.div>
+</div>
+
 
       <Footer />
       {showScrollTop && (

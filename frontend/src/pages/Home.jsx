@@ -4,16 +4,14 @@ import Footer from "../components/Footer";
 import CustomCursor from "../components/CustomCursor";
 import Typewriter from "typewriter-effect";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPython, FaGitAlt } from "react-icons/fa";
-import { TbArrowBigUpLines  } from "react-icons/tb";
+import { TbArrowBigUpLines } from "react-icons/tb";
 import { SiMongodb, SiTailwindcss, SiExpress } from "react-icons/si";
 import { Link } from "react-router-dom";
 import React from "react";
 import { useEffect } from "react";
 
 // Placeholder images – replace these imports with your actual images if available
-import luxiousImg from "/images/Mockup 1.png";
-import emperhiaImg from "/images/Mockup 3.png";
-import nutritionousImg from "/images/Thumbnail - 2.png";
+
 
 
 
@@ -77,7 +75,14 @@ function Home() {
         <CustomCursor />
         {/* Title */}
         <div className="w-full max-w-4xl text-4xl xs:text-5xl sm:text-9xl md:text-6xl lg:text-7xl font-semibold drop-shadow-[0_0_10px_black] leading-tight gap-1">
-          <span>I'm Harsh Vekariya, a</span>
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            I'm Harsh Vekariya, a
+          </motion.span>
+
           <span className="text-[#ffffff] block w-full min-h-[1em] mt-2">
             <Typewriter
               options={{
@@ -131,14 +136,26 @@ function Home() {
         <div className="flex flex-col md:flex-row items-stretch justify-between gap-8 px-4 md:px-16">
 
           {/* Left side title */}
-          <div className="w-full md:w-1/2 flex items-center justify-center bg-white">
+          <motion.div
+            className="w-full md:w-1/2 flex items-center justify-center bg-white"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-black text-center md:text-right">
               About <span className="text-purple-500">Me</span>
             </h2>
-          </div>
+          </motion.div>
 
           {/* Right side description */}
-          <div className="w-full md:w-1/2 flex items-center justify-center bg-white">
+          <motion.div
+            className="w-full md:w-1/2 flex items-center justify-center bg-white"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
             <p className="text-gray-700 text-base sm:text-lg leading-relaxed text-left md:text-left max-w-xl">
               I'm <span className="font-bold text-black">Harsh Vekariya</span>, a BSc IT student focused on Data Science.&nbsp;
               I'm skilled in <span className="font-bold">web development</span>, <span className="font-bold">programming</span>, and <span className="font-bold">UI/UX design</span>.<br /><br />
@@ -148,7 +165,7 @@ function Home() {
               <span className="font-bold"> Adobe XD</span>, and <span className="font-bold">Figma</span>
               to build complete digital solutions.
             </p>
-          </div>
+          </motion.div>
 
         </div>
       </div>
@@ -207,38 +224,51 @@ function Home() {
             </Link>
 
           </div>
-
           {/* Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-
             {/* First Project */}
-            <div className="relative w-full aspect-[5/3] rounded-2xl overflow-hidden shadow bg-gray-100 group">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              className="relative w-full aspect-[5/3] rounded-2xl overflow-hidden shadow bg-gray-100 group"
+            >
               <img
-                src={luxiousImg}
+                src="/images/Mockup 1.png"
                 alt="Luxious Project"
                 className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 cursor-pointer"
               />
-            </div>
+            </motion.div>
 
             {/* Second Project */}
-            <div className="relative w-full aspect-[5/3] rounded-2xl overflow-hidden shadow bg-gray-100 group">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative w-full aspect-[5/3] rounded-2xl overflow-hidden shadow bg-gray-100 group"
+            >
               <img
-                src={emperhiaImg}
+                src="/images/Mockup 3.png"
                 alt="Emperhia Project"
                 className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 cursor-pointer"
               />
-            </div>
+            </motion.div>
 
             {/* Full-width third project */}
-            <div className="relative md:col-span-2 w-full aspect-[18/9] rounded-2xl overflow-hidden shadow bg-gray-100 group">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="relative md:col-span-2 w-full aspect-[18/9] rounded-2xl overflow-hidden shadow bg-gray-100 group"
+            >
               <img
-                src={nutritionousImg}
+                src="/images/Thumbnail - 2.png"
                 alt="Nutritionous Project"
                 className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 cursor-pointer"
               />
-            </div>
-
+            </motion.div>
           </div>
+
 
         </div>
       </div>
@@ -260,7 +290,7 @@ function Home() {
             animate={{ y: [0, -4, 0] }}
             transition={{ repeat: Infinity, duration: 1 }}
           >
-            <TbArrowBigUpLines   />
+            <TbArrowBigUpLines />
           </motion.span>
         </motion.button>
       )}
