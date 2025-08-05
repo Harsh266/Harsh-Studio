@@ -1,13 +1,32 @@
 import { FaBehance, FaGithub, FaInstagram } from "react-icons/fa";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [activeId, setActiveId] = useState("");
+
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    const path = location.pathname;
+
+    if (path === "/") {
+      if (hash === "About") {
+        setActiveId("About");
+      } else {
+        setActiveId("Home");
+      }
+    } else {
+      setActiveId(path);
+    }
+  }, [location]);
+
+
 
   const handleAboutClick = () => {
     if (location.pathname === "/") {
@@ -75,14 +94,20 @@ function Navbar() {
               {item.onClick ? (
                 <button
                   onClick={item.onClick}
-                  className="text-gray-300 hover:text-white transition-colors duration-300 relative after:content-[''] after:block after:w-0 after:h-[2px] after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+                  className={`text-gray-300 hover:text-white transition-colors duration-300 relative
+after:content-[''] after:block after:h-[2px] after:bg-white after:transition-all after:duration-300
+${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white' : 'after:w-0 hover:after:w-full'}`}
+
                 >
                   {item.name}
                 </button>
               ) : (
                 <Link
                   to={item.path}
-                  className="text-gray-300 hover:text-white transition-colors duration-300 relative after:content-[''] after:block after:w-0 after:h-[2px] after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+                  className={`text-gray-300 hover:text-white transition-colors duration-300 relative
+after:content-[''] after:block after:h-[2px] after:bg-white after:transition-all after:duration-300
+${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white' : 'after:w-0 hover:after:w-full'}`}
+
                 >
                   {item.name}
                 </Link>
@@ -90,6 +115,7 @@ function Navbar() {
             </motion.li>
           ))}
         </ul>
+
 
         {/* Social Icons */}
         <motion.div
