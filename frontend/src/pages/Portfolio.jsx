@@ -118,20 +118,29 @@ function Portfolio() {
             <motion.div
               key={project.id}
               whileHover={{ scale: 1.04, y: -6 }}
-              className="bg-transparent backdrop-blur-md rounded-2xl shadow-md ring-1 ring-black/10 transition duration-300 group flex flex-col overflow-hidden"
+              className="bg-white/10 backdrop-blur-md rounded-xl shadow-lg ring-1 ring-white/10 transition duration-300 group flex flex-col overflow-hidden p-4 "
             >
-              <div className="aspect-[14/9] w-full overflow-hidden">
+              {/* Card Header */}
+              <div className="pt-2 px-1 flex flex-col items-start min-h-[56px]">
+                <h4 className="font-bold text-lg text-white leading-snug line-clamp-2">
+                  {project.name}
+                </h4>
+              </div>
+
+              {/* Card Body (Fixed Image Height) */}
+              <div className="mt-4">
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="object-cover w-full h-full transition"
+                  className="object-cover w-full h-[180px] rounded-xl"
                 />
               </div>
-              <div className="bg-transparent backdrop-blur-md px-5 py-4 rounded-b-2xl shadow-inner flex flex-col gap-2">
-                <h3 className="text-white text-lg font-semibold truncate">{project.name}</h3>
+
+              {/* View Button */}
+              <div className="mt-4">
                 <button
                   onClick={() => setSelectedProject(project)}
-                  className="text-sm font-medium text-white flex items-center gap-1 transition cursor-pointer"
+                  className="text-sm font-medium text-white flex items-center gap-1 transition hover:underline cursor-pointer"
                 >
                   View Project <FaExternalLinkAlt className="ml-1 text-xs" />
                 </button>
@@ -140,9 +149,13 @@ function Portfolio() {
           ))}
         </div>
 
+
+
+
+
         {selectedProject && (
           <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="relative bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[80vh] overflow-y-auto hide-scrollbar">
+            <div className="relative bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto hide-scrollbar">
               <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-3 right-4 text-black text-2xl font-bold cursor-pointer transition z-10"
@@ -153,7 +166,7 @@ function Portfolio() {
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.name}
-                  className="w-full h-64 object-cover rounded-lg mb-4"
+                  className="w-full max-h-[80vh] rounded-lg mb-4"
                 />
                 <h3 className="text-2xl font-semibold text-black mb-2">
                   {selectedProject.name}
@@ -179,6 +192,7 @@ function Portfolio() {
             </div>
           </div>
         )}
+
 
         {/* Skills Section */}
         <div className="overflow-hidden w-full py-12 mt-12">
