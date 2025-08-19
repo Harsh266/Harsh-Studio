@@ -112,7 +112,7 @@ function Home() {
 
         {/* CTA Button */}
         <a
-          href="https://drive.google.com/file/d/1dukz5sUdmfITQfzxsaYQ0TYiuQbbxV1A/view?usp=sharing"
+          href="https://drive.google.com/file/d/16MS8qF9IuM6XscFyNdsinPWmvmw_RV73/view?usp=drive_link"
           target="_blank"
           rel="noopener noreferrer"
           download
