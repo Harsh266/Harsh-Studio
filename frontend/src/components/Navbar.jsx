@@ -124,16 +124,8 @@ ${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white'
           variants={itemVariants}
           initial="hidden"
           animate="visible"
-          className="hidden md:flex items-center gap-3"
+          className="hidden md:flex items-center"
         >
-          <a
-            href="https://www.instagram.com/harsh_vekariya_24"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-black p-2 transition hover:scale-115"
-          >
-            <FaInstagram className="text-white text-lg" />
-          </a>
           <a
             href="https://www.linkedin.com/in/harsh-vekariya-8a89b2359"
             target="_blank"
@@ -218,14 +210,6 @@ ${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white'
               {/* Sidebar Socials */}
               <div className="mt-10">
                 <div className="flex gap-4 mb-4">
-                  <a
-                    href="https://www.instagram.com/harsh_vekariya_24"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-full bg-white p-2 hover:bg-gray-300 transition"
-                  >
-                    <FaInstagram className="text-black text-lg" />
-                  </a>
                   <a
                     href="https://www.linkedin.com/in/harsh-vekariya-8a89b2359"
                     target="_blank"
