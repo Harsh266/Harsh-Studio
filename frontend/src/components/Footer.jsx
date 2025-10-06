@@ -1,4 +1,4 @@
-import { FaBehance, FaGithub, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 
@@ -101,12 +101,12 @@ function Footer() {
                   <FaInstagram className="text-black text-lg hover:scale-115" />
                 </a>
                 <a
-                  href="https://www.behance.net/harshvekariya2"
+                  href="https://www.linkedin.com/in/harsh-vekariya-8a89b2359"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full bg-white hover:bg-gray-200 p-2 transition hover:scale-115"
                 >
-                  <FaBehance className="text-black text-lg hover:scale-115" />
+                  <FaLinkedin className="text-black text-lg hover:scale-115" />
                 </a>
                 <a
                   href="https://github.com/Harsh266"

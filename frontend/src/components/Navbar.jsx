@@ -1,4 +1,4 @@
-import { FaBehance, FaGithub, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -135,12 +135,12 @@ ${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white'
             <FaInstagram className="text-white text-lg" />
           </a>
           <a
-            href="https://www.behance.net/harshvekariya2"
+            href="https://www.linkedin.com/in/harsh-vekariya-8a89b2359"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full bg-black p-2 hover:scale-115 transition"
           >
-            <FaBehance className="text-white text-lg" />
+            <FaLinkedin className="text-white text-lg" />
           </a>
           <a
             href="https://github.com/Harsh266"
@@ -227,12 +227,12 @@ ${(item.name === activeId || item.path === activeId) ? 'after:w-full text-white'
                     <FaInstagram className="text-black text-lg" />
                   </a>
                   <a
-                    href="https://www.behance.net/harshvekariya2"
+                    href="https://www.linkedin.com/in/harsh-vekariya-8a89b2359"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-full bg-white p-2 hover:bg-gray-300 transition"
                   >
-                    <FaBehance className="text-black text-lg" />
+                    <FaLinkedin className="text-black text-lg" />
                   </a>
                   <a
                     href="https://github.com/Harsh266"
